@@ -1,0 +1,87 @@
+{
+  "env": {
+    "browser": true,
+    "jasmine": true,
+    "jest": true,
+    "es6": true,
+    "node": true,
+    "jest/globals": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/recommended",
+    "plugin:jest/style"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "jest",
+    "no-relative-import-paths"
+  ],
+  "rules": {
+    "no-relative-import-paths/no-relative-import-paths": [
+      "warn",
+      {
+        "allowSameFolder": true,
+        "rootDir": "src"
+      }
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "comma-dangle": "warn",
+    "no-irregular-whitespace": "warn",
+    "no-multi-spaces": "warn",
+    "no-mixed-spaces-and-tabs": "warn",
+    "no-trailing-spaces": "warn",
+    "no-buffer-constructor": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": [
+      "error",
+      {
+        "allowArgumentsExplicitlyTypedAsAny": true
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "semi": "error",
+    "quotes": [
+      "error",
+      "double",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "object-curly-spacing": [
+      "error",
+      "never"
+    ],
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "jest/consistent-test-it": ["warn", {"fn": "it"}],
+    "jest/prefer-lowercase-title": "warn",
+    "jest/prefer-hooks-on-top": "warn",
+    "jest/no-standalone-expect": "off",
+    "jest/expect-expect": "off",
+    "jest/valid-expect": "off",
+    "jest/valid-expect-in-promise": "off"
+  },
+  "globals": {
+    "BigInt": true,
+    "__dirname": false,
+    "process": false,
+    "module": false
+  },
+  "parser": "@typescript-eslint/parser"
+}
