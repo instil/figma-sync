@@ -4,8 +4,8 @@ on: [push]
 
 jobs:
   commitChecks:
-    runs-on: self-hosted
-    
+    runs-on: ubuntu-latest
+
     steps:
       - name: Clone project
         uses: actions/checkout@v2
@@ -20,7 +20,7 @@ jobs:
     needs: commitChecks
     if: github.ref == 'refs/heads/main'
     concurrency: "1"
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Clone project
