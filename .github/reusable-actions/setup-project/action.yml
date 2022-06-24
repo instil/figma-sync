@@ -1,0 +1,15 @@
+name: "Setup project"
+description: "Setup node, yarn, etc"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16.5.0
+        cache: "yarn"
+
+    - name: Install dependencies
+      shell: bash
+      run: yarn install

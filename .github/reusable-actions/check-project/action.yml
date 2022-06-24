@@ -1,0 +1,9 @@
+name: "Execute commit checks"
+description: "Run all the lint, tests, and builds in the project"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Run builds
+      shell: bash
+      run: yarn build
