@@ -42,7 +42,7 @@ https://www.figma.com/file/<the figma file id>/<the name of the figma file>?node
 ```
 So copy the part after `file/`
 
-![](readme-assets/Copy id.png)
+![](readme-assets/copy-id.png)
 
 #### Getting your figma api key
 1. Click your profile picture
@@ -50,9 +50,9 @@ So copy the part after `file/`
 3. Scroll down to `Personal access tokens`
 4. Create a new token with an understandable name (for example `Figma-sync`)
 
-![](readme-assets/Settings.png)
+![](readme-assets/settings.png)
 
-![](readme-assets/Create token.png)
+![](readme-assets/create-token.png)
 
 ## Debugging
 
