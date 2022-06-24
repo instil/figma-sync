@@ -54,6 +54,12 @@ So copy the part after `file/`
 
 ![](readme-assets/create-token.png)
 
+## Syncing
+Run `$ yarn sync` to begin sync
+
+### Icons
+Syncing icons can take a _very_ long time, so to also sync icons run `$ yarn sync:icons`
+
 ## Debugging
 
 ### Webstorm ESLint: "TypeError: this.cliEngineCtor is not a constructor"
