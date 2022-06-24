@@ -1,11 +1,24 @@
 {
   "name": "figma-sync",
   "version": "1.0.0",
+  "description": "Syncing a figma design system into code via a 'pull' model",
+  "homepage": "https://github.com/instil/figma-sync/tree/main/src",
+  "author": "neil.armstrong@instil.co",
+  "license": "MIT",
+  "main": "build/src/SyncFigmaWithIcons.js",
+  "types": "build/src/SyncFigmaWithIcons.d.ts",
+  "bin": {
+    "figma-sync": "./build/src/SyncFigmaWithIcons.js",
+    "figma-sync:withIcons": "./build/src/SyncFigmaWithoutIcons.js"
+  },
   "scripts": {
-    "build": "yarn checks",
+    "build": "yarn checks && yarn compile",
     "checks": "yarn lint && yarn test",
     "lint": "yarn eslint --max-warnings=0 \"./src/**/*.{ts,tsx}\"",
     "test": "yarn jest --passWithNoTests",
+    "publish": "yarn package && echo 'something here'",
+    "package": "yarn compile && yarn pack",
+    "compile": "rm -rf ./build && yarn ttsc --p ./tsconfig.json",
     "sync": "yarn ts-node -r tsconfig-paths/register src/SyncFigmaWithoutIcons.ts",
     "sync:icons": "yarn ts-node -r tsconfig-paths/registersrc/ SyncFigmaWithIcons.ts"
   },
@@ -28,6 +41,7 @@
     "ts-jest": "28.0.3",
     "ts-node": "10.8.1",
     "tsconfig-paths": "4.0.0",
+    "ttypescript": "1.5.13",
     "typescript": "4.7.2",
     "typescript-transform-paths": "3.3.1"
   }
