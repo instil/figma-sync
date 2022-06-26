@@ -13,9 +13,9 @@ const outputFolderMock = mockFunction(outputFolder);
 
 beforeEach(() => {
   existsSyncMock.mockReturnValue(true);
-  readFileSyncMock.mockReturnValue("A file")
+  readFileSyncMock.mockReturnValue("A file");
 
-  outputFolderMock.mockReturnValue("generated")
+  outputFolderMock.mockReturnValue("generated");
 });
 
 it("should save typography helper file when exists locally", () => {
