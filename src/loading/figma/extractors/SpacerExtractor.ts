@@ -1,12 +1,12 @@
 import type {GetFileResult} from "figma-api/lib/api-types";
 import type {FRAME} from "figma-api";
-import {extractFrame} from "./utils/FrameExtractor";
+import {extractFrame} from "./figma-component-extractors/FrameExtractor";
 import {isText} from "@src/loading/figma/types/figma-api/Text";
 import type {DesignTokenSpacers} from "@src/loading/figma/types/design-token/types/DesignTokenSpacers";
 import {isFrame} from "@src/loading/figma/types/figma-api/Frame";
-import {findChild} from "./utils/children/ChildFinder";
-import {filterChildren} from "./utils/children/ChildFilter";
-import {logPercentage} from "./utils/PercentageLogger";
+import {findChild} from "./figma-component-extractors/children/ChildFinder";
+import {filterChildren} from "./figma-component-extractors/children/ChildFilter";
+import {logPercentage} from "./logging/PercentageLogger";
 
 const pageName = "   ↳ Spacing";
 const frameName = "Table";

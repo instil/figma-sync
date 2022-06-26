@@ -1,9 +1,9 @@
 import type {GetFileResult} from "figma-api/lib/api-types";
-import {extractPage} from "@src/loading/figma/extractors/utils/PageExtractor";
-import {filterChildren} from "@src/loading/figma/extractors/utils/children/ChildFilter";
+import {extractPage} from "@src/loading/figma/extractors/figma-component-extractors/PageExtractor";
+import {filterChildren} from "@src/loading/figma/extractors/figma-component-extractors/children/ChildFilter";
 import {isComponent} from "@src/loading/figma/types/figma-api/Component";
 import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDictionary";
-import {addSvgToDictonary} from "./GetIcon";
+import {addSvgToDictionary} from "./icon-extractor/GetIcon";
 
 const pageName = "   ↳ Iconography";
 
@@ -17,7 +17,7 @@ export async function extractIcons(figmaGetFileResult: GetFileResult): Promise<S
   const networkRequests: Promise<void>[] = [];
   const svgs: SvgDictionary = {};
   for (let index = 0; index < iconContainers.length; index++) {
-    networkRequests.push(addSvgToDictonary(svgs, iconContainers[index], iconContainers.length));
+    networkRequests.push(addSvgToDictionary(svgs, iconContainers[index], iconContainers.length));
   }
   await Promise.all(networkRequests);
 

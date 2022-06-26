@@ -3,21 +3,21 @@ import type {Node} from "figma-api/lib/ast-types";
 import {buildTestNode} from "@src/loading/figma/types/figma-api/testing/BuildTestNode";
 import type {CANVAS} from "figma-api";
 import type {GetFileResult} from "figma-api/lib/api-types";
-import {extractPage} from "@src/loading/figma/extractors/utils/PageExtractor";
+import {extractPage} from "./figma-component-extractors/PageExtractor";
 import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDictionary";
-import {logPercentage} from "@src/loading/figma/extractors/utils/PercentageLogger";
+import {logPercentage} from "./logging/PercentageLogger";
 import {figmaApi} from "@src/loading/figma/providers/FigmaApi";
 import axios from "axios";
 import {figmaId} from "@src/config/providers/Config";
 import type {Api as FigmaApi} from "figma-api/lib/api-class";
 import {castMockObject, createMockObjectOf, mockFunction} from "@src/shared/testing/jest/JestHelpers";
-import {throttledRequest} from "./utils/ThrottledRequest";
+import {throttledRequest} from "./throttle/ThrottledRequest";
 
-jest.mock("@src/loading/figma/extractors/utils/PageExtractor");
-jest.mock("@src/loading/figma/extractors/utils/PercentageLogger");
+jest.mock("./figma-component-extractors/PageExtractor");
+jest.mock("@src/loading/figma/extractors/logging/PercentageLogger");
 jest.mock("@src/loading/figma/providers/FigmaApi");
 jest.mock("@src/config/providers/Config");
-jest.mock("./utils/ThrottledRequest");
+jest.mock("./throttle/ThrottledRequest");
 jest.mock("axios");
 
 const extractPageMock = mockFunction(extractPage);

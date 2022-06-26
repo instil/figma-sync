@@ -1,21 +1,21 @@
 import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDictionary";
-import type {NodeAnd} from "@src/loading/figma/extractors/utils/children/ChildFilter";
-import {filterChildren} from "@src/loading/figma/extractors/utils/children/ChildFilter";
+import type {NodeAnd} from "@src/loading/figma/extractors/figma-component-extractors/children/ChildFilter";
+import {filterChildren} from "@src/loading/figma/extractors/figma-component-extractors/children/ChildFilter";
 import type {FRAME} from "figma-api";
 import {figmaApi} from "@src/loading/figma/providers/FigmaApi";
 import {figmaId} from "@src/config/providers/Config";
 import axios from "axios";
-import {logPercentage} from "@src/loading/figma/extractors/utils/PercentageLogger";
+import {logPercentage} from "@src/loading/figma/extractors/logging/PercentageLogger";
 import {isFrame} from "@src/loading/figma/types/figma-api/Frame";
 import {isBooleanOperation} from "@src/loading/figma/types/figma-api/BooleanOperation";
 import {isGroup} from "@src/loading/figma/types/figma-api/Group";
 import {isRectangle} from "@src/loading/figma/types/figma-api/Rectangle";
 import {isVector} from "@src/loading/figma/types/figma-api/Vector";
-import {throttledRequest} from "./utils/ThrottledRequest";
+import {throttledRequest} from "@src/loading/figma/extractors/throttle/ThrottledRequest";
 
 let completedRequests = 0;
 
-export async function addSvgToDictonary(svgs: SvgDictionary, iconContainer: NodeAnd<FRAME>, length: number): Promise<void> {
+export async function addSvgToDictionary(svgs: SvgDictionary, iconContainer: NodeAnd<FRAME>, length: number): Promise<void> {
   const iconName = iconContainer.name;
 
   const svgId = getSvgId(iconContainer);

@@ -1,12 +1,12 @@
 import type {GetFileResult} from "figma-api/lib/api-types";
-import {extractFrame} from "./utils/FrameExtractor";
+import {extractFrame} from "./figma-component-extractors/FrameExtractor";
 import type {DesignTokenShadows} from "@src/loading/figma/types/design-token/types/DesignTokenShadows";
 import {buildBoxDropShadowDefinition, buildBoxInsertShadowDefinition} from "@src/loading/figma/types/design-token/types/DesignTokenShadows";
 import {isFrame} from "@src/loading/figma/types/figma-api/Frame";
-import {filterChildren} from "./utils/children/ChildFilter";
+import {filterChildren} from "./figma-component-extractors/children/ChildFilter";
 import {reverse} from "lodash";
-import {extractDropShadowEffects, extractInsetShadowEffects} from "./utils/EffectsExtractor";
-import {logPercentage} from "./utils/PercentageLogger";
+import {extractDropShadowEffects, extractInsetShadowEffects} from "./figma-component-extractors/EffectsExtractor";
+import {logPercentage} from "./logging/PercentageLogger";
 
 const pageName = "   ↳ Shadow";
 const frameName = "Styles";

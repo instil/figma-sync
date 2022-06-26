@@ -1,16 +1,16 @@
 import * as target from "./SpacerExtractor";
-import {logPercentage} from "./utils/PercentageLogger";
+import {logPercentage} from "./logging/PercentageLogger";
 import type {FRAME} from "figma-api";
 import {buildTestNode} from "@src/loading/figma/types/figma-api/testing/BuildTestNode";
 import type {GetFileResult} from "figma-api/lib/api-types";
-import {extractFrame} from "./utils/FrameExtractor";
-import type {NodeWithChildren} from "./utils/children/types/NodeWithChildren";
+import {extractFrame} from "./figma-component-extractors/FrameExtractor";
+import type {NodeWithChildren} from "./figma-component-extractors/children/types/NodeWithChildren";
 import type {Node} from "figma-api/lib/ast-types";
 import type {DesignTokenSpacers} from "@src/loading/figma/types/design-token/types/DesignTokenSpacers";
 import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
 
-jest.mock("./utils/FrameExtractor");
-jest.mock("./utils/PercentageLogger");
+jest.mock("./figma-component-extractors/FrameExtractor");
+jest.mock("./logging/PercentageLogger");
 
 const extractFrameMock = mockFunction(extractFrame);
 const logPercentageMock = mockFunction(logPercentage);

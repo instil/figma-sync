@@ -1,4 +1,4 @@
-import {extractIcons} from "./extractors/icon-extractor/IconExtractor";
+import {extractIcons} from "./extractors/IconExtractor";
 import type {SvgDictionary} from "./types/design-token/SvgDictionary";
 import {figmaApi} from "./providers/FigmaApi";
 import {figmaId} from "@src/config/providers/Config";

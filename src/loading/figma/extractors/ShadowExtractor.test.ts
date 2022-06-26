@@ -1,15 +1,15 @@
 import * as target from "./ShadowExtractor";
 import type {GetFileResult} from "figma-api/lib/api-types";
 import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
-import {extractFrame} from "./utils/FrameExtractor";
-import {logPercentage} from "./utils/PercentageLogger";
+import {extractFrame} from "./figma-component-extractors/FrameExtractor";
+import {logPercentage} from "./logging/PercentageLogger";
 import type {FRAME} from "figma-api";
 import {buildTestNode} from "@src/loading/figma/types/figma-api/testing/BuildTestNode";
 import type {DesignTokenShadows} from "@src/loading/figma/types/design-token/types/DesignTokenShadows";
 import {BlendMode, EffectType} from "figma-api/lib/ast-types";
 
-jest.mock("./utils/FrameExtractor");
-jest.mock("./utils/PercentageLogger");
+jest.mock("./figma-component-extractors/FrameExtractor");
+jest.mock("./logging/PercentageLogger");
 
 const extractFrameMock = mockFunction(extractFrame);
 const logPercentageMock = mockFunction(logPercentage);

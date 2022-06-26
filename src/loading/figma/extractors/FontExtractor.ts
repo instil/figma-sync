@@ -1,13 +1,13 @@
 import type {GetFileResult} from "figma-api/lib/api-types";
 import type {FRAME} from "figma-api";
 import {isInstance} from "@src/loading/figma/types/figma-api/Instance";
-import {extractFrame} from "./utils/FrameExtractor";
+import {extractFrame} from "./figma-component-extractors/FrameExtractor";
 import type {DesignTokenFonts} from "@src/loading/figma/types/design-token/types/DesignTokenFonts";
 import {isText} from "@src/loading/figma/types/figma-api/Text";
-import {findChild} from "./utils/children/ChildFinder";
+import {findChild} from "./figma-component-extractors/children/ChildFinder";
 import {isFrame} from "@src/loading/figma/types/figma-api/Frame";
-import {filterChildren} from "./utils/children/ChildFilter";
-import {logPercentage} from "./utils/PercentageLogger";
+import {filterChildren} from "./figma-component-extractors/children/ChildFilter";
+import {logPercentage} from "./logging/PercentageLogger";
 
 const pageName = "   ↳ Typography";
 const frameName = "Typography";

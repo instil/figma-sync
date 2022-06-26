@@ -1,6 +1,6 @@
 import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDictionary";
 import {mkdirSync, writeFileSync} from "fs";
-import {logPercentage} from "@src/loading/figma/extractors/utils/PercentageLogger";
+import {logPercentage} from "@src/loading/figma/extractors/logging/PercentageLogger";
 import {iconBuildFolder} from "./utils/IconsDirectory";
 
 export function saveIcons(icons: SvgDictionary): void {

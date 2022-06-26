@@ -3,12 +3,12 @@ import {isFrame} from "@src/loading/figma/types/figma-api/Frame";
 import {isInstance} from "@src/loading/figma/types/figma-api/Instance";
 import {isRectangle} from "@src/loading/figma/types/figma-api/Rectangle";
 import type {DesignTokenColors} from "@src/loading/figma/types/design-token/types/DesignTokenColors";
-import {extractFrame} from "./utils/FrameExtractor";
-import {findChild} from "./utils/children/ChildFinder";
-import {filterChildren} from "./utils/children/ChildFilter";
+import {extractFrame} from "./figma-component-extractors/FrameExtractor";
+import {findChild} from "./figma-component-extractors/children/ChildFinder";
+import {filterChildren} from "./figma-component-extractors/children/ChildFilter";
 import type {COMPONENT, INSTANCE} from "figma-api";
 import {isComponent} from "@src/loading/figma/types/figma-api/Component";
-import {logPercentage} from "./utils/PercentageLogger";
+import {logPercentage} from "./logging/PercentageLogger";
 
 const pageName = "   ↳ Colour";
 const frameName = "System";

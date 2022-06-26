@@ -2,13 +2,13 @@ import * as target from "./GetIcons";
 import {figmaApi} from "./providers/FigmaApi";
 import type {GetFileResult} from "figma-api/lib/api-types";
 import type {SvgDictionary} from "./types/design-token/SvgDictionary";
-import {extractIcons} from "./extractors/icon-extractor/IconExtractor";
+import {extractIcons} from "./extractors/IconExtractor";
 import type {Api as FigmaApi} from "figma-api/lib/api-class";
 import {figmaId} from "@src/config/providers/Config";
 import {createMockObjectOf, mockFunction} from "@src/shared/testing/jest/JestHelpers";
 
 jest.mock("./providers/FigmaApi");
-jest.mock("./extractors/icon-extractor/IconExtractor");
+jest.mock("./extractors/IconExtractor");
 jest.mock("@src/config/providers/Config");
 
 const figmaApiBuilderMock = mockFunction(figmaApi);

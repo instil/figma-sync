@@ -4,12 +4,12 @@ import type {DesignTokenColors} from "@src/loading/figma/types/design-token/type
 import {buildTestNode} from "@src/loading/figma/types/figma-api/testing/BuildTestNode";
 import type {FRAME, RECTANGLE} from "figma-api";
 import type {Node, Paint, StylesMap} from "figma-api/lib/ast-types";
-import {extractFrame} from "./utils/FrameExtractor";
-import {logPercentage} from "./utils/PercentageLogger";
+import {extractFrame} from "./figma-component-extractors/FrameExtractor";
+import {logPercentage} from "./logging/PercentageLogger";
 import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
 
-jest.mock("./utils/FrameExtractor");
-jest.mock("./utils/PercentageLogger");
+jest.mock("./figma-component-extractors/FrameExtractor");
+jest.mock("./logging/PercentageLogger");
 
 const extractFrameMock = mockFunction(extractFrame);
 const logPercentageMock = mockFunction(logPercentage);
@@ -127,7 +127,7 @@ describe("when no rectangles containers in swatch row", () => {
         ...swatchRow1,
         children: []
       }]
-    } as FRAME;
+    } as unknown as FRAME;
     extractFrameMock.mockReturnValue(updatedFrame);
 
     try {
@@ -169,7 +169,7 @@ describe("when no rectangles in rectangle container", () => {
           children: []
         }]
       }]
-    } as FRAME;
+    } as unknown as FRAME;
     extractFrameMock.mockReturnValue(updatedFrame);
 
     try {
@@ -341,7 +341,7 @@ describe("when rectangle does not have expected fill array is empty", () => {
           }]
         }]
       }]
-    } as FRAME;
+    } as unknown as FRAME;
     extractFrameMock.mockReturnValue(updatedFrame);
 
     try {
