@@ -1,6 +1,6 @@
 import * as target from "./CompileFigmaTokens";
 import type {DesignToken} from "@src/loading/figma/types/design-token/DesignToken";
-import {existsSync, mkdirSync, writeFileSync} from "fs";
+import {existsSync, mkdirSync, rmSync, writeFileSync} from "fs";
 import {StyleDictionary} from "./providers/StyleDictionary";
 import {buildTemporaryStyleDictionaryDirectory} from "./utils/StyleDictionaryDirectory";
 import type {Config} from "style-dictionary";
@@ -17,6 +17,7 @@ const writeFileSyncMock = mockFunction(writeFileSync);
 const outputFolderMock = mockFunction(outputFolder);
 const buildTemporaryStyleDictionaryDirectoryMock = mockFunction(buildTemporaryStyleDictionaryDirectory);
 const mkdirSyncMock = mockFunction(mkdirSync);
+const rmSyncMock = mockFunction(rmSync);
 const StyleDictionaryMock = castMockObject(StyleDictionary);
 
 const tokens: DesignToken = {
@@ -57,6 +58,10 @@ describe("when tokens are complied with an existing token directory", () => {
   it("should not make any directories", () => {
     expect(mkdirSyncMock).not.toHaveBeenCalled();
   });
+
+  it("should delete the style-directory temporary directory", () => {
+    expect(rmSyncMock).toHaveBeenCalledWith("test-temporary-directory", {recursive: true});
+  });
 });
 
 describe("when tokens are complied without an existing token directory", () => {
@@ -83,6 +88,10 @@ describe("when tokens are complied without an existing token directory", () => {
 
   it("should make the temporary directory", () => {
     expect(mkdirSyncMock).toHaveBeenCalledWith("test-temporary-directory");
+  });
+
+  it("should delete the style-directory temporary directory", () => {
+    expect(rmSyncMock).toHaveBeenCalledWith("test-temporary-directory", {recursive: true});
   });
 });
 

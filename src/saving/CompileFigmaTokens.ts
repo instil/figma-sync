@@ -1,5 +1,5 @@
 import type {Config} from "style-dictionary";
-import {existsSync, mkdirSync, writeFileSync} from "fs";
+import {existsSync, mkdirSync, writeFileSync, rmSync} from "fs";
 import type {DesignToken} from "@src/loading/figma/types/design-token/DesignToken";
 import {styleDictionaryFolderName, buildTemporaryStyleDictionaryDirectory} from "./utils/StyleDictionaryDirectory";
 import {StyleDictionary} from "./providers/StyleDictionary";
@@ -14,6 +14,10 @@ export function compileFigmaTokens(tokens: DesignToken): void {
   writeFileSync(`${temporaryStyleDictionaryDirectory}/token.json`, JSON.stringify(tokens));
 
   StyleDictionary.extend(buildStyleDictionaryConfig()).buildAllPlatforms();
+
+  rmSync(temporaryStyleDictionaryDirectory, {
+    recursive: true
+  });
 }
 
 const buildStyleDictionaryConfig = (): Config => ({
