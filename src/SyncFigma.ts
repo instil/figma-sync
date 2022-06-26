@@ -3,6 +3,7 @@ import {compileFigmaTokens} from "./saving/CompileFigmaTokens";
 import {saveIcons} from "./saving/SaveIcons";
 import {getIcons} from "./loading/figma/GetIcons";
 import {loadConfig} from "@src/config/providers/Config";
+import {saveSassHelpers} from "@src/saving/SaveSassHelpers";
 
 interface Configuration {
   withIcons?: true;
@@ -24,6 +25,10 @@ async function syncDesignTokens(): Promise<void> {
   console.log("Compiling design token into styles...");
   compileFigmaTokens(token);
   console.log("Style compiling complete!\n");
+
+  console.log("Installing sass helpers...");
+  saveSassHelpers();
+  console.log("Sass helper installation complete\n");
 }
 
 async function syncIcons(): Promise<void> {

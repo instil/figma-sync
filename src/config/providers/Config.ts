@@ -6,7 +6,7 @@ const configPath = `${process.cwd()}/FigmaSync.config.json`;
 let config: FigmaSyncConfig;
 
 export async function loadConfig(): Promise<void> {
-  if (!fileExistsSync(configPath)) throw Error(`Could not find configuration file at ${configPath}`);
+  if (!fileExistsSync(configPath)) throw Error(`Could not find configuration file at '${configPath}'. Please follow the readme instructions.`);
 
   const parsedConfigFile = await import(configPath);
 

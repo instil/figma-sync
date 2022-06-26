@@ -18,7 +18,9 @@
     "test": "yarn jest --passWithNoTests",
     "publish": "yarn package && echo 'something here'",
     "package": "yarn compile && yarn pack",
-    "compile": "rm -rf ./build && yarn ttsc --p ./tsconfig.json",
+    "compile": "yarn compile:typescript && yarn compile:copyAssets",
+    "compile:typescript": "rm -rf ./build && yarn ttsc --p ./tsconfig.json",
+    "compile:copyAssets": "cp -r ./scss-helpers ./build/scss-helpers",
     "sync": "yarn ts-node -r tsconfig-paths/register src/SyncFigmaWithoutIcons.ts",
     "sync:icons": "yarn ts-node -r tsconfig-paths/register src/SyncFigmaWithIcons.ts"
   },

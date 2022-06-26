@@ -57,6 +57,20 @@ So copy the part after `file/`
 
 ![](readme-assets/create-token.png)
 
+## Helpers
+Provided is a `TypographyHelpers.scss` file which makes loading fonts much easier. 
+
+### Usage
+
+Add the following line to your css class to use the provided mixin
+```
+@use "path-to-generated-folder/scss/TypographyHelpers";
+
+.someKindOfClass {
+  @include TypographyHelpers.useFont("Text M/Desktop Regular");
+}
+```
+
 ## Development
 
 ## Getting started (Mac)

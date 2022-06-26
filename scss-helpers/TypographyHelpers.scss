@@ -1,0 +1,47 @@
+@use "sass:map";
+@use "./typography";
+
+$-tokenMap: map.get(typography.$tokens, "fonts");
+
+// Go to the typography file to find available font keys
+@mixin useFont($fontNamespace) {
+  @if $fontNamespace == "inherit" {
+    font-family: inherit;
+    line-height: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    font-weight: inherit;
+  } @else {
+    $-namespace: map.get($-tokenMap, $fontNamespace);
+
+    @if $-namespace == null {
+      @error "Font namespace '#{$fontNamespace}' is invalid. Please select one of the following: [inherit, #{map.keys($-tokenMap)}]";
+    }
+
+    $font: map.get($-namespace, "family");
+    @if $font {
+      font-family: $font;
+    }
+
+    // Disabled for now as it was causing weird resizing issues on editing a label
+    //$lineHeight: map.get($-namespace, "lineheight");
+    //@if $lineHeight {
+    //  line-height: $lineHeight;
+    //}
+
+    $fontSize: map.get($-namespace, "size");
+    @if $fontSize {
+      font-size: $fontSize;
+    }
+
+    $letterSpacing: map.get($-namespace, "spacing");
+    @if $letterSpacing {
+      letter-spacing: $letterSpacing;
+    }
+
+    $weight: map.get($-namespace, "weight");
+    @if $weight {
+      font-weight: $weight;
+    }
+  }
+}
