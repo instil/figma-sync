@@ -47,5 +47,7 @@ build/Release
 # dependencies
 /node_modules
 
+FigmaSync.config.json
 style-dictionary-source/token.json
 generated
+build

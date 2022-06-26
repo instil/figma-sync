@@ -76,7 +76,7 @@ const fontFrame: FRAME = {
 const figmaGetFileResult: GetFileResult = {} as unknown as GetFileResult;
 
 let result: ReturnType<typeof target.extractSpacers> | undefined;
-let caughtError: Error | undefined;
+let caughtError: unknown;
 
 beforeEach(() => {
   extractFrameMock.mockReturnValue(fontFrame);

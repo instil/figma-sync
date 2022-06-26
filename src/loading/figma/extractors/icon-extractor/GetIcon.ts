@@ -3,7 +3,7 @@ import type {NodeAnd} from "@src/loading/figma/extractors/utils/children/ChildFi
 import {filterChildren} from "@src/loading/figma/extractors/utils/children/ChildFilter";
 import type {FRAME} from "figma-api";
 import {figmaApi} from "@src/loading/figma/providers/FigmaApi";
-import {figmaId} from "@src/loading/figma/providers/Environment";
+import {figmaId} from "@src/config/providers/Config";
 import axios from "axios";
 import {logPercentage} from "@src/loading/figma/extractors/utils/PercentageLogger";
 import {isFrame} from "@src/loading/figma/types/figma-api/Frame";

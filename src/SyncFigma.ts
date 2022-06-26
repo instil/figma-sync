@@ -2,12 +2,15 @@ import {getDesignToken} from "./loading/figma/GetDesignToken";
 import {compileFigmaTokens} from "./saving/CompileFigmaTokens";
 import {saveIcons} from "./saving/SaveIcons";
 import {getIcons} from "./loading/figma/GetIcons";
+import {loadConfig} from "@src/config/providers/Config";
 
 interface Configuration {
   withIcons?: true;
 }
 
 export async function syncFigma(configuration?: Configuration): Promise<void> {
+  await loadConfig();
+
   await syncDesignTokens();
 
   if (configuration?.withIcons) await syncIcons();

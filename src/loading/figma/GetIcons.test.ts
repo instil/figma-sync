@@ -4,12 +4,12 @@ import type {GetFileResult} from "figma-api/lib/api-types";
 import type {SvgDictionary} from "./types/design-token/SvgDictionary";
 import {extractIcons} from "./extractors/icon-extractor/IconExtractor";
 import type {Api as FigmaApi} from "figma-api/lib/api-class";
-import {figmaId} from "./providers/Environment";
+import {figmaId} from "@src/config/providers/Config";
 import {createMockObjectOf, mockFunction} from "@src/shared/testing/jest/JestHelpers";
 
 jest.mock("./providers/FigmaApi");
 jest.mock("./extractors/icon-extractor/IconExtractor");
-jest.mock("./providers/Environment");
+jest.mock("@src/config/providers/Config");
 
 const figmaApiBuilderMock = mockFunction(figmaApi);
 const figmaApiMock = createMockObjectOf<FigmaApi>("getFile");

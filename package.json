@@ -5,11 +5,11 @@
   "homepage": "https://github.com/instil/figma-sync/tree/main/src",
   "author": "neil.armstrong@instil.co",
   "license": "MIT",
-  "main": "build/src/SyncFigmaWithIcons.js",
-  "types": "build/src/SyncFigmaWithIcons.d.ts",
+  "main": "build/src/SyncFigmaWithoutIcons.js",
+  "types": "build/src/Types.d.ts",
   "bin": {
-    "figma-sync": "./build/src/SyncFigmaWithIcons.js",
-    "figma-sync:withIcons": "./build/src/SyncFigmaWithoutIcons.js"
+    "figma-sync": "./build/src/SyncFigmaWithoutIcons.js",
+    "figma-sync:withIcons": "./build/src/SyncFigmaWithIcons.js"
   },
   "scripts": {
     "build": "yarn checks && yarn compile",
@@ -20,7 +20,7 @@
     "package": "yarn compile && yarn pack",
     "compile": "rm -rf ./build && yarn ttsc --p ./tsconfig.json",
     "sync": "yarn ts-node -r tsconfig-paths/register src/SyncFigmaWithoutIcons.ts",
-    "sync:icons": "yarn ts-node -r tsconfig-paths/registersrc/ SyncFigmaWithIcons.ts"
+    "sync:icons": "yarn ts-node -r tsconfig-paths/register src/SyncFigmaWithIcons.ts"
   },
   "devDependencies": {
     "@types/jest": "27.5.1",

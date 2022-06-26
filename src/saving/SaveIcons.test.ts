@@ -8,7 +8,6 @@ import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
 jest.mock("fs");
 jest.mock("@src/loading/figma/extractors/utils/PercentageLogger");
 jest.mock("./utils/IconsDirectory");
-jest.mock("./providers/Environment");
 
 const mkdirSyncMock = mockFunction(mkdirSync);
 const writeFileSyncMock = mockFunction(writeFileSync);

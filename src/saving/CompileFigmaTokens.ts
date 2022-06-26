@@ -1,9 +1,9 @@
 import type {Config} from "style-dictionary";
 import {existsSync, mkdirSync, writeFileSync} from "fs";
 import type {DesignToken} from "@src/loading/figma/types/design-token/DesignToken";
-import {generatedFilesDirectory} from "./providers/Environment";
 import {styleDictionaryFolderName, buildTemporaryStyleDictionaryDirectory} from "./utils/StyleDictionaryDirectory";
 import {StyleDictionary} from "./providers/StyleDictionary";
+import {outputFolder} from "@src/config/providers/Config";
 
 export function compileFigmaTokens(tokens: DesignToken): void {
   const temporaryStyleDictionaryDirectory = buildTemporaryStyleDictionaryDirectory();
@@ -21,7 +21,7 @@ const buildStyleDictionaryConfig = (): Config => ({
   platforms: {
     scss: {
       transformGroup: "scss",
-      buildPath: `${generatedFilesDirectory()}/scss/`,
+      buildPath: `${outputFolder()}/scss/`,
       options: {
         showFileHeader: false,
         outputReferences: false

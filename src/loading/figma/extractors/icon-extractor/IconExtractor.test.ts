@@ -8,7 +8,7 @@ import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDicti
 import {logPercentage} from "@src/loading/figma/extractors/utils/PercentageLogger";
 import {figmaApi} from "@src/loading/figma/providers/FigmaApi";
 import axios from "axios";
-import {figmaId} from "@src/loading/figma/providers/Environment";
+import {figmaId} from "@src/config/providers/Config";
 import type {Api as FigmaApi} from "figma-api/lib/api-class";
 import {castMockObject, createMockObjectOf, mockFunction} from "@src/shared/testing/jest/JestHelpers";
 import {throttledRequest} from "./utils/ThrottledRequest";
@@ -16,7 +16,7 @@ import {throttledRequest} from "./utils/ThrottledRequest";
 jest.mock("@src/loading/figma/extractors/utils/PageExtractor");
 jest.mock("@src/loading/figma/extractors/utils/PercentageLogger");
 jest.mock("@src/loading/figma/providers/FigmaApi");
-jest.mock("@src/loading/figma/providers/Environment");
+jest.mock("@src/config/providers/Config");
 jest.mock("./utils/ThrottledRequest");
 jest.mock("axios");
 
@@ -77,7 +77,7 @@ const svgAfterProcessing = `
 `;
 
 let result: SvgDictionary | undefined;
-let caughtError: Error | undefined;
+let caughtError: unknown;
 
 beforeEach(() => {
   extractPageMock.mockReturnValue(fontFrame);
@@ -530,7 +530,7 @@ describe("when figma get image api call fails", () => {
 function buildSvgInFrame(id: string | undefined): Node {
   const svg: Node = {
     ...buildTestNode("BOOLEAN_OPERATION"),
-    id
+    id: id as string
   };
   return {
     ...buildTestNode("FRAME"),
@@ -541,27 +541,27 @@ function buildSvgInFrame(id: string | undefined): Node {
 function buildRectangle(id: string | undefined): Node {
   return {
     ...buildTestNode("RECTANGLE"),
-    id
+    id: id as string
   };
 }
 
 function buildSvg(id: string | undefined): Node {
   return {
     ...buildTestNode("BOOLEAN_OPERATION"),
-    id
+    id: id as string
   };
 }
 
 function buildGroup(id: string | undefined): Node {
   return {
     ...buildTestNode("GROUP"),
-    id
+    id: id as string
   };
 }
 
 function buildVector(id: string | undefined): Node {
   return {
     ...buildTestNode("VECTOR"),
-    id
+    id: id as string
   };
 }

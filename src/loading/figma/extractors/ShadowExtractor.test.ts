@@ -82,7 +82,7 @@ const frame: FRAME = {
 const figmaGetFileResult: GetFileResult = {} as unknown as GetFileResult;
 
 let result: ReturnType<typeof target.extractShadows> | undefined;
-let caughtError: Error | undefined;
+let caughtError: unknown;
 
 beforeEach(() => {
   extractFrameMock.mockReturnValue(frame);

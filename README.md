@@ -14,24 +14,27 @@ https://blog.prototypr.io/design-tokens-with-figma-aef25c42430f#26f2
 and
 https://blog.jacobtan.co/extracting-svgs-using-figma-api
 
-## Getting started (Mac)
+## Install
+`$ yarn add --dev figma-sync`
 
-### Required dependencies
-1. Install Nodenv: https://github.com/nodenv/nodenv#homebrew-on-macos
-2. Install Node version: `$ nodenv install 16.5.0`
-3. Install Yarn 2: https://yarnpkg.com/getting-started/install
-4. Install dependencies: `$ yarn install`
-5. Test it works! `$ yarn build`
-
-### Pointing at your environment
-Create a `.env.local` at in the root directory with the following
+Create a `FigmaSync.config.json` at in the root directory with the following
 ```
-FIGMA_ID=<id of the figma file>
-FIGMA_API_KEY=<your figma api key>
-GENERATED_FILES_DIRECTORY=<folder to put the generated files into>
+{
+  "figmaPageId": "<id of the figma page to sync from>",
+  "figmaApiKey": "<your figma api key>",
+  "outputFolder": "<the folder to save the synced styles and icons>"
+}
 ```
 
-#### Getting the id of a figma file
+## Usage
+
+### Sync styles (fast)
+`$ yarn figma-sync`
+
+### Sync styles and icons (slow)
+`$ yarn figma-sync:withIcons`
+
+### Getting the id of a figma file
 1. Open a figma file
 2. Right click it's tab
 3. Click `Copy link`
@@ -44,7 +47,7 @@ So copy the part after `file/`
 
 ![](readme-assets/copy-id.png)
 
-#### Getting your figma api key
+### Getting your figma api key
 1. Click your profile picture
 2. Select `Settings`
 3. Scroll down to `Personal access tokens`
@@ -54,11 +57,23 @@ So copy the part after `file/`
 
 ![](readme-assets/create-token.png)
 
+## Development
+
+## Getting started (Mac)
+1. Install Nodenv: https://github.com/nodenv/nodenv#homebrew-on-macos
+2. Install Node version: `$ nodenv install 16.5.0`
+3. Install Yarn 2: https://yarnpkg.com/getting-started/install
+4. Install dependencies: `$ yarn install`
+5. Test it works! `$ yarn build`
+
 ## Syncing
 Run `$ yarn sync` to begin sync
 
 ### Icons
 Syncing icons can take a _very_ long time, so to also sync icons run `$ yarn sync:icons`
+
+## Releasing
+???
 
 ## Debugging
 

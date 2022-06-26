@@ -1,4 +1,4 @@
 import {join} from "path";
-import {generatedFilesDirectory} from "@src/saving/providers/Environment";
+import {outputFolder} from "@src/config/providers/Config";
 
-export const iconBuildFolder = (): string => join(process.cwd(), generatedFilesDirectory(), "icons");
+export const iconBuildFolder = (): string => join(process.cwd(), outputFolder(), "icons");

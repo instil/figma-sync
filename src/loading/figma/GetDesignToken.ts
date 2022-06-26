@@ -1,6 +1,6 @@
 import type {DesignToken} from "./types/design-token/DesignToken";
 import {figmaApi} from "./providers/FigmaApi";
-import {figmaId} from "./providers/Environment";
+import {figmaId} from "@src/config/providers/Config";
 import {extractColors} from "./extractors/ColorExtractor";
 import {extractFonts} from "./extractors/FontExtractor";
 import {extractSpacers} from "./extractors/SpacerExtractor";

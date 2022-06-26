@@ -10,7 +10,7 @@ import {extractFonts} from "./extractors/FontExtractor";
 import {extractSpacers} from "./extractors/SpacerExtractor";
 import {extractShadows} from "./extractors/ShadowExtractor";
 import type {Api as FigmaApi} from "figma-api/lib/api-class";
-import {figmaId} from "./providers/Environment";
+import {figmaId} from "@src/config/providers/Config";
 import {createMockObjectOf, mockFunction} from "@src/shared/testing/jest/JestHelpers";
 import type {DesignTokenShadows} from "./types/design-token/types/DesignTokenShadows";
 
@@ -19,7 +19,7 @@ jest.mock("./extractors/ColorExtractor");
 jest.mock("./extractors/FontExtractor");
 jest.mock("./extractors/SpacerExtractor");
 jest.mock("./extractors/ShadowExtractor");
-jest.mock("./providers/Environment");
+jest.mock("@src/config/providers/Config");
 
 const figmaApiBuilderMock = mockFunction(figmaApi);
 const figmaApiMock = createMockObjectOf<FigmaApi>("getFile");

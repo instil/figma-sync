@@ -2,19 +2,19 @@ import * as target from "./CompileFigmaTokens";
 import type {DesignToken} from "@src/loading/figma/types/design-token/DesignToken";
 import {existsSync, mkdirSync, writeFileSync} from "fs";
 import {StyleDictionary} from "./providers/StyleDictionary";
-import {generatedFilesDirectory} from "./providers/Environment";
 import {buildTemporaryStyleDictionaryDirectory} from "./utils/StyleDictionaryDirectory";
 import type {Config} from "style-dictionary";
 import {castMockObject, mockFunction} from "@src/shared/testing/jest/JestHelpers";
+import {outputFolder} from "@src/config/providers/Config";
 
 jest.mock("fs");
 jest.mock("./providers/StyleDictionary");
-jest.mock("./providers/Environment");
+jest.mock("@src/config/providers/Config");
 jest.mock("./utils/StyleDictionaryDirectory");
 
 const existsSyncMock = mockFunction(existsSync);
 const writeFileSyncMock = mockFunction(writeFileSync);
-const generatedFilesDirectoryMock = mockFunction(generatedFilesDirectory);
+const outputFolderMock = mockFunction(outputFolder);
 const buildTemporaryStyleDictionaryDirectoryMock = mockFunction(buildTemporaryStyleDictionaryDirectory);
 const mkdirSyncMock = mockFunction(mkdirSync);
 const StyleDictionaryMock = castMockObject(StyleDictionary);
@@ -28,7 +28,7 @@ const tokens: DesignToken = {
 
 beforeEach(() => {
   StyleDictionaryMock.extend.mockReturnValue(StyleDictionaryMock);
-  generatedFilesDirectoryMock.mockReturnValue("test-directory");
+  outputFolderMock.mockReturnValue("test-directory");
   buildTemporaryStyleDictionaryDirectoryMock.mockReturnValue("test-temporary-directory");
 });
 

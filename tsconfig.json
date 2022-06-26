@@ -2,7 +2,7 @@
   "compileOnSave": true,
   "compilerOptions": {
     "target": "ES2017",
-    "module": "commonjs",
+    "module": "CommonJS",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "skipLibCheck": true,
