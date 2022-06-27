@@ -16,7 +16,7 @@
     "checks": "yarn lint && yarn test",
     "lint": "yarn eslint --max-warnings=0 \"./src/**/*.{ts,tsx}\"",
     "test": "yarn jest --passWithNoTests",
-    "publish": "yarn package && echo 'something here'",
+    "publish": "yarn package && yarn npm publish",
     "package": "yarn compile && yarn pack",
     "compile": "yarn compile:typescript && yarn compile:copyAssets",
     "compile:typescript": "rm -rf ./build && yarn ttsc --p ./tsconfig.json",

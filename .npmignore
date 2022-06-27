@@ -1,0 +1,6 @@
+src
+generated
+jest.config.js
+tsconfig.json
+FigmaSync.config.json
+scss-helpers
