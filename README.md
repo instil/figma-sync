@@ -1,4 +1,4 @@
-# Figma-sync
+# Design sync
 
 An alternative solution for syncing a figma design system from into code. Rather than the traditional approach of using a plugin within figma to generate files (a "push" model) this offers the ability to use the Figma API to "pull" from Figma directly.
 
@@ -86,7 +86,15 @@ Run `$ yarn sync` to begin sync
 Syncing icons can take a _very_ long time, so to also sync icons run `$ yarn sync:icons`
 
 ## Releasing
-???
+### Login
+```
+$ yarn npm login
+```
+
+### Publish
+```
+$ yarn publish
+```
 
 ## Debugging
 

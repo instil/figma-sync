@@ -1,8 +1,8 @@
 {
-  "name": "figma-sync",
+  "name": "design-sync",
   "version": "1.0.0",
   "description": "Syncing a figma design system into code via a 'pull' model",
-  "homepage": "https://github.com/instil/figma-sync/tree/main/src",
+  "homepage": "https://github.com/instil/design-sync",
   "author": "neil.armstrong@instil.co",
   "license": "MIT",
   "main": "build/src/SyncFigmaWithoutIcons.js",
