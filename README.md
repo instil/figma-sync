@@ -17,7 +17,7 @@ https://blog.jacobtan.co/extracting-svgs-using-figma-api.
 ## Install
 `$ yarn add --dev figma-sync`
 
-Create a `FigmaSync.config.json` at in the root directory with the following:
+Create a `DesignSync.config.json` at in the root directory with the following:
 ```
 {
   "figmaPageId": "<id of the figma page to sync from>",
