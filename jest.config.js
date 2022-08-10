@@ -2,7 +2,7 @@ module.exports = {
   resetMocks: true,
   preset: "ts-jest/presets/js-with-ts",
   moduleFileExtensions: ["ts", "js"],
-  "moduleNameMapper": {
+  moduleNameMapper: {
     "@src/(.*)": "<rootDir>/src/$1",
   },
   testMatch: ["**/*.test.ts"],
