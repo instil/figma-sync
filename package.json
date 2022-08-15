@@ -42,7 +42,7 @@
     "@typescript-eslint/eslint-plugin": "5.33.0",
     "@typescript-eslint/parser": "5.33.0",
     "design-sync": "1.1.0",
-    "eslint": "8.21.0",
+    "eslint": "8.22.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jest": "26.8.2",
     "eslint-plugin-no-relative-import-paths": "1.4.0",
