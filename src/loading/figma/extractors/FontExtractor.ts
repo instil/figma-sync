@@ -35,7 +35,7 @@ export function extractFonts(figmaGetFileResult: GetFileResult): DesignTokenFont
   }), {});
 }
 
-function extractFrontsFromFrame(frame: FRAME): DesignTokenFonts {
+function extractFrontsFromFrame(frame: FRAME & Node): DesignTokenFonts {
   const stackItems = filterChildren(frame, isInstance);
   if (stackItems.length === 0) return {};
 
@@ -58,7 +58,7 @@ function extractFrontsFromFrame(frame: FRAME): DesignTokenFonts {
 
       const name = fontSpec.characters;
       const type = fontSpec.name;
-      designTokens[`${name} / ${type}`] = {
+      designTokens[`${name} / ${frame.name} / ${type}`] = {
         family: {
           value: fontSpec.style.fontPostScriptName ? `${fontSpec.style.fontFamily}, ${fontSpec.style.fontPostScriptName}` : fontSpec.style.fontFamily,
           type: "typography"

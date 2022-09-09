@@ -17,12 +17,12 @@ const logPercentageMock = mockFunction(logPercentage);
 
 const desktopFrame: Node = {
   ...buildTestNode("FRAME"),
-  name: "Desktop Type Stack",
+  name: "Desktop",
   children: buildStackItems("DESKTOP")
 };
 const mobileFrame: Node = {
   ...buildTestNode("FRAME"),
-  name: "Mobile Type Stack",
+  name: "Mobile",
   children: buildStackItems("MOBILE")
 };
 const frame: FRAME = {
@@ -55,7 +55,7 @@ describe("when extracting fonts successfully", () => {
 
   it("should return fonts design token", () => {
     const expected: DesignTokenFonts = {
-      "DESKTOP Display 2XL / Regular": {
+      "Display 2XL / Desktop / Regular": {
         family: {
           value: "Gotham SSm, GothamSSm-Book",
           type: "typography"
@@ -77,7 +77,7 @@ describe("when extracting fonts successfully", () => {
           type: "typography"
         }
       },
-      "DESKTOP Display 2XL / Medium": {
+      "Display 2XL / Desktop / Medium": {
         family: {
           value: "Gotham SSm, GothamSSm-Bold",
           type: "typography"
@@ -99,7 +99,7 @@ describe("when extracting fonts successfully", () => {
           type: "typography"
         }
       },
-      "MOBILE Display 2XL / Regular": {
+      "Display 2XL / Mobile / Regular": {
         family: {
           value: "Gotham SSm, GothamSSm-Book",
           type: "typography"
@@ -121,7 +121,7 @@ describe("when extracting fonts successfully", () => {
           type: "typography"
         }
       },
-      "MOBILE Display 2XL / Medium": {
+      "Display 2XL / Mobile / Medium": {
         family: {
           value: "Gotham SSm, GothamSSm-Bold",
           type: "typography"
@@ -219,7 +219,7 @@ describe("when desktop frame does not contain any stack items", () => {
 
   it("should return fonts design token without any desktop fonts", () => {
     const expected: DesignTokenFonts = {
-      "MOBILE Display 2XL / Regular": {
+      "Display 2XL / Mobile / Regular": {
         family: {
           value: "Gotham SSm, GothamSSm-Book",
           type: "typography"
@@ -241,7 +241,7 @@ describe("when desktop frame does not contain any stack items", () => {
           type: "typography"
         }
       },
-      "MOBILE Display 2XL / Medium": {
+      "Display 2XL / Mobile / Medium": {
         family: {
           value: "Gotham SSm, GothamSSm-Bold",
           type: "typography"
@@ -307,7 +307,7 @@ describe("when mobile frame does not contain any stack items", () => {
 
   it("should return fonts design token without any mobile fonts", () => {
     const expected: DesignTokenFonts = {
-      "DESKTOP Display 2XL / Regular": {
+      "Display 2XL / Desktop / Regular": {
         family: {
           value: "Gotham SSm, GothamSSm-Book",
           type: "typography"
@@ -329,7 +329,7 @@ describe("when mobile frame does not contain any stack items", () => {
           type: "typography"
         }
       },
-      "DESKTOP Display 2XL / Medium": {
+      "Display 2XL / Desktop / Medium": {
         family: {
           value: "Gotham SSm, GothamSSm-Bold",
           type: "typography"
@@ -571,7 +571,7 @@ function buildStackItems(type: "DESKTOP" | "MOBILE"): Node[] {
   const regularDisplay2Xl = {
     ...buildTestNode("TEXT"),
     name: "Regular",
-    characters: `${type} Display 2XL`,
+    characters: "Display 2XL",
     style: {
       fontPostScriptName: "GothamSSm-Book",
       fontFamily: "Gotham SSm",
@@ -584,7 +584,7 @@ function buildStackItems(type: "DESKTOP" | "MOBILE"): Node[] {
   const mediumDisplay2Xl = {
     ...buildTestNode("TEXT"),
     name: "Medium",
-    characters: `${type} Display 2XL`,
+    characters: "Display 2XL",
     style: {
       fontPostScriptName: "GothamSSm-Bold",
       fontFamily: "Gotham SSm",
