@@ -55,7 +55,7 @@ describe("when extracting fonts successfully", () => {
 
   it("should return fonts design token", () => {
     const expected: DesignTokenFonts = {
-      "Display 2XL/DESKTOP Regular": {
+      "DESKTOP Display 2XL / Regular": {
         family: {
           value: "Gotham SSm, GothamSSm-Book",
           type: "typography"
@@ -77,7 +77,7 @@ describe("when extracting fonts successfully", () => {
           type: "typography"
         }
       },
-      "Display 2XL/DESKTOP Medium": {
+      "DESKTOP Display 2XL / Medium": {
         family: {
           value: "Gotham SSm, GothamSSm-Bold",
           type: "typography"
@@ -99,7 +99,7 @@ describe("when extracting fonts successfully", () => {
           type: "typography"
         }
       },
-      "Display 2XL/MOBILE Regular": {
+      "MOBILE Display 2XL / Regular": {
         family: {
           value: "Gotham SSm, GothamSSm-Book",
           type: "typography"
@@ -121,7 +121,7 @@ describe("when extracting fonts successfully", () => {
           type: "typography"
         }
       },
-      "Display 2XL/MOBILE Medium": {
+      "MOBILE Display 2XL / Medium": {
         family: {
           value: "Gotham SSm, GothamSSm-Bold",
           type: "typography"
@@ -164,11 +164,11 @@ describe("when extracting fonts successfully", () => {
   });
 });
 
-describe("when no desktop frame", () => {
+describe("when no frames", () => {
   beforeEach(() => {
     const updatedFrame: FRAME = {
       ...frame,
-      children: [mobileFrame]
+      children: []
     };
     extractFrameMock.mockReturnValue(updatedFrame);
 
@@ -184,47 +184,11 @@ describe("when no desktop frame", () => {
   });
 
   it("should throw an error", () => {
-    expect(caughtError).toEqual(new Error("No desktop typography found, is figma setup correctly?"));
+    expect(caughtError).toEqual(new Error("No fonts found, is figma setup correctly?"));
   });
 
-  it("should not log percentage", () => {
+  it("should not log any percentage", () => {
     expect(logPercentageMock).not.toHaveBeenCalled();
-  });
-
-  it("should extract frame with correct page and frame names", () => {
-    expect(extractFrame).toHaveBeenCalledWith({figmaGetFileResult, pageName: "   ↳ Typography", frameName: "Typography"});
-  });
-});
-
-describe("when no mobile frame", () => {
-  beforeEach(() => {
-    const updatedFrame: FRAME = {
-      ...frame,
-      children: [desktopFrame]
-    };
-    extractFrameMock.mockReturnValue(updatedFrame);
-
-    try {
-      result = target.extractFonts(figmaGetFileResult);
-    } catch (error) {
-      caughtError = error;
-    }
-  });
-
-  it("should not return design token", () => {
-    expect(result).toBeUndefined();
-  });
-
-  it("should throw an error", () => {
-    expect(caughtError).toEqual(new Error("No mobile typography found, is figma setup correctly?"));
-  });
-
-  it("should log percentage", () => {
-    expect(logPercentageMock).toHaveBeenCalledWith({
-      type: "fonts",
-      index: expect.anything(),
-      length: 1
-    });
   });
 
   it("should extract frame with correct page and frame names", () => {
@@ -255,7 +219,7 @@ describe("when desktop frame does not contain any stack items", () => {
 
   it("should return fonts design token without any desktop fonts", () => {
     const expected: DesignTokenFonts = {
-      "Display 2XL/MOBILE Regular": {
+      "MOBILE Display 2XL / Regular": {
         family: {
           value: "Gotham SSm, GothamSSm-Book",
           type: "typography"
@@ -277,7 +241,7 @@ describe("when desktop frame does not contain any stack items", () => {
           type: "typography"
         }
       },
-      "Display 2XL/MOBILE Medium": {
+      "MOBILE Display 2XL / Medium": {
         family: {
           value: "Gotham SSm, GothamSSm-Bold",
           type: "typography"
@@ -343,7 +307,7 @@ describe("when mobile frame does not contain any stack items", () => {
 
   it("should return fonts design token without any mobile fonts", () => {
     const expected: DesignTokenFonts = {
-      "Display 2XL/DESKTOP Regular": {
+      "DESKTOP Display 2XL / Regular": {
         family: {
           value: "Gotham SSm, GothamSSm-Book",
           type: "typography"
@@ -365,7 +329,7 @@ describe("when mobile frame does not contain any stack items", () => {
           type: "typography"
         }
       },
-      "Display 2XL/DESKTOP Medium": {
+      "DESKTOP Display 2XL / Medium": {
         family: {
           value: "Gotham SSm, GothamSSm-Bold",
           type: "typography"
@@ -439,90 +403,6 @@ describe("when both desktop and mobile frames do not contain any stack items", (
 
   it("should not throw an error", () => {
     expect(caughtError).toBeUndefined();
-  });
-
-  it("should not log percentage", () => {
-    expect(logPercentageMock).not.toHaveBeenCalled();
-  });
-
-  it("should extract frame with correct page and frame names", () => {
-    expect(extractFrame).toHaveBeenCalledWith({figmaGetFileResult, pageName: "   ↳ Typography", frameName: "Typography"});
-  });
-});
-
-describe("when desktop stack does not contain header frame", () => {
-  beforeEach(() => {
-    const updatedFrame: FRAME = {
-      ...frame,
-      children: [
-        {
-          ...desktopFrame,
-          children: [
-            desktopFrame.children[1]
-          ]
-        },
-        mobileFrame
-      ]
-    };
-    extractFrameMock.mockReturnValue(updatedFrame);
-
-    try {
-      result = target.extractFonts(figmaGetFileResult);
-    } catch (error) {
-      caughtError = error;
-    }
-  });
-
-  it("should not return any design token", () => {
-    expect(result).toBeUndefined();
-  });
-
-  it("should not throw an error", () => {
-    expect(caughtError).toEqual(new Error("Could not find header frame that contains the environment type (e.g. 'Desktop' or 'Mobile')"));
-  });
-
-  it("should not log percentage", () => {
-    expect(logPercentageMock).not.toHaveBeenCalled();
-  });
-
-  it("should extract frame with correct page and frame names", () => {
-    expect(extractFrame).toHaveBeenCalledWith({figmaGetFileResult, pageName: "   ↳ Typography", frameName: "Typography"});
-  });
-});
-
-describe("when desktop stack's header frame does not contain a text element", () => {
-  beforeEach(() => {
-    const updatedFrame: FRAME = {
-      ...frame,
-      children: [
-        {
-          ...desktopFrame,
-          children: [
-            {
-              ...desktopFrame.children[0],
-              children: []
-            },
-            desktopFrame.children[1]
-          ]
-        },
-        mobileFrame
-      ]
-    };
-    extractFrameMock.mockReturnValue(updatedFrame);
-
-    try {
-      result = target.extractFonts(figmaGetFileResult);
-    } catch (error) {
-      caughtError = error;
-    }
-  });
-
-  it("should not return any design token", () => {
-    expect(result).toBeUndefined();
-  });
-
-  it("should not throw an error", () => {
-    expect(caughtError).toEqual(new Error("Could not find text inside header frame that contains the environment type (e.g. 'Desktop' or 'Mobile')"));
   });
 
   it("should not log percentage", () => {
@@ -691,7 +571,7 @@ function buildStackItems(type: "DESKTOP" | "MOBILE"): Node[] {
   const regularDisplay2Xl = {
     ...buildTestNode("TEXT"),
     name: "Regular",
-    characters: "Display 2XL",
+    characters: `${type} Display 2XL`,
     style: {
       fontPostScriptName: "GothamSSm-Book",
       fontFamily: "Gotham SSm",
@@ -704,7 +584,7 @@ function buildStackItems(type: "DESKTOP" | "MOBILE"): Node[] {
   const mediumDisplay2Xl = {
     ...buildTestNode("TEXT"),
     name: "Medium",
-    characters: "Display 2XL",
+    characters: `${type} Display 2XL`,
     style: {
       fontPostScriptName: "GothamSSm-Bold",
       fontFamily: "Gotham SSm",

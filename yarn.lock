@@ -2001,7 +2001,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"design-sync@1.1.0, design-sync@workspace:.":
+"design-sync@1.1.1, design-sync@workspace:.":
   version: 0.0.0-use.local
   resolution: "design-sync@workspace:."
   dependencies:
@@ -2011,7 +2011,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 5.33.0
     "@typescript-eslint/parser": 5.33.0
     axios: 0.27.2
-    design-sync: 1.1.0
+    design-sync: 1.1.1
     eslint: 8.21.0
     eslint-plugin-import: 2.26.0
     eslint-plugin-jest: 26.8.2
