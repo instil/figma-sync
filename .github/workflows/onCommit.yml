@@ -15,19 +15,3 @@ jobs:
 
       - name: Run checks
         uses: ./.github/reusable-actions/check-project
-
-  deploy:
-    needs: commitChecks
-    if: github.ref == 'refs/heads/main'
-    concurrency: "1"
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Clone project
-        uses: actions/checkout@v2
-
-      - name: Setup project
-        uses: ./.github/reusable-actions/setup-project
-
-      - name: Deploy (not done yet)
-        run: echo "Deploy should happen here!"
