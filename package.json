@@ -1,6 +1,6 @@
 {
   "name": "design-sync",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Syncing a figma design system into code via a 'pull' model",
   "homepage": "https://github.com/instil/design-sync",
   "author": "neil.armstrong@instil.co",
@@ -41,7 +41,7 @@
     "@types/node": "18.6.5",
     "@typescript-eslint/eslint-plugin": "5.33.0",
     "@typescript-eslint/parser": "5.33.0",
-    "design-sync": "1.3.0",
+    "design-sync": "1.4.0",
     "eslint": "8.21.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jest": "26.8.2",

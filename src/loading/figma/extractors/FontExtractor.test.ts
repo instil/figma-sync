@@ -32,7 +32,22 @@ const frame: FRAME = {
     mobileFrame
   ]
 } as unknown as FRAME;
-const figmaGetFileResult: GetFileResult = {} as unknown as GetFileResult;
+const figmaGetFileResult: GetFileResult = {
+  styles: {
+    "1:1": {
+      name: "Display 2XL / Desktop / Regular"
+    },
+    "1:2": {
+      name: "Display 2XL / Desktop / Medium"
+    },
+    "2:1": {
+      name: "Display 2XL / Mobile / Regular"
+    },
+    "2:2": {
+      name: "Display 2XL / Mobile / Medium"
+    }
+  }
+} as unknown as GetFileResult;
 
 let result: ReturnType<typeof target.extractFonts> | undefined;
 let caughtError: unknown;
@@ -568,10 +583,15 @@ describe("when desktop stack item's sample container does not contain any font s
 });
 
 function buildStackItems(type: "DESKTOP" | "MOBILE"): Node[] {
+  const styleId = type === "DESKTOP" ? "1" : "2";
+
   const regularDisplay2Xl = {
     ...buildTestNode("TEXT"),
     name: "Regular",
     characters: "Display 2XL",
+    styles: {
+      text: `${styleId}:1`
+    },
     style: {
       fontPostScriptName: "GothamSSm-Book",
       fontFamily: "Gotham SSm",
@@ -585,6 +605,9 @@ function buildStackItems(type: "DESKTOP" | "MOBILE"): Node[] {
     ...buildTestNode("TEXT"),
     name: "Medium",
     characters: "Display 2XL",
+    styles: {
+      text: `${styleId}:2`
+    },
     style: {
       fontPostScriptName: "GothamSSm-Bold",
       fontFamily: "Gotham SSm",
