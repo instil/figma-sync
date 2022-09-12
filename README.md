@@ -58,9 +58,10 @@ So copy the part after `file/`
 `$ yarn figma-sync:withIcons`
 
 ## Helpers
-Provided is a `TypographyHelpers.scss` file which makes loading fonts much easier. 
 
-### Usage
+A few typesafe helpers to make refactors easier to detect, and allow copy pasting from figma's "Inspect" tool
+
+### TypographyHelpers.scss
 
 Add the following line to your css class to use the provided mixin
 ```
@@ -68,6 +69,17 @@ Add the following line to your css class to use the provided mixin
 
 .someKindOfClass {
   @include TypographyHelpers.useFont("Text M/Desktop Regular");
+}
+```
+
+### ColorHelpers.scss
+
+Add the following line to find the correct color value
+```
+@use "path-to-generated-folder/scss/ColorHelpers";
+
+.someKindOfClass {
+  color: ColorHelpers.useColor("Primary/Light/60");
 }
 ```
 
