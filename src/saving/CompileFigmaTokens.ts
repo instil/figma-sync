@@ -33,7 +33,7 @@ const buildStyleDictionaryConfig = (): Config => ({
       files: [
         {
           destination: "_colors.scss",
-          format: "scss/variables",
+          format: "scss/map-deep",
           filter: {
             type: "color"
           }

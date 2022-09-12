@@ -1,0 +1,15 @@
+@use "sass:map";
+@use "./colors";
+
+$-tokenMap: map.get(colors.$tokens, "colors");
+
+// Go to the typography file to find available color keys
+@mixin useColor($colorNamespace) {
+  $-colorValue: map.get($-tokenMap, $colorNamespace);
+
+  @if $-colorValue == null {
+    @error "Color namespace '#{$colorNamespace}' is invalid. Please select one of the following: [inherit, #{map.keys($-tokenMap)}]";
+  }
+
+  $-colorValue;
+}

@@ -18,16 +18,17 @@ beforeEach(() => {
   outputFolderMock.mockReturnValue("generated");
 });
 
-it("should save typography helper file when exists locally", () => {
+it("should save helper files when exists locally", () => {
   target.saveSassHelpers();
 
   expect(writeFileSyncMock).toHaveBeenCalledWith("generated/scss/TypographyHelpers.scss", "A file");
+  expect(writeFileSyncMock).toHaveBeenCalledWith("generated/scss/ColorHelpers.scss", "A file");
 });
 
-it("should throw error if typography helper file does not exist", () => {
+it("should throw error if helpers folder does not exist", () => {
   existsSyncMock.mockReturnValue(false);
 
-  expect(() => target.saveSassHelpers()).toThrow(new Error("Could not find typography helper file"));
+  expect(() => target.saveSassHelpers()).toThrow(/^Could not find sass helpers folder at '/);
 
   expect(readFileSyncMock).not.toHaveBeenCalled();
   expect(writeFileSyncMock).not.toHaveBeenCalled();

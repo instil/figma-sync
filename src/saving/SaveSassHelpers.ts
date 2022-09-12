@@ -1,13 +1,19 @@
-import {readFileSync, writeFileSync, existsSync} from "fs";
+import {existsSync, readFileSync, writeFileSync} from "fs";
 import {outputFolder} from "@src/config/providers/Config";
 
-const typographyHelperPath = `${__dirname}/../../scss-helpers/TypographyHelpers.scss`;
+const sassHelpersPath = `${__dirname}/../../scss-helpers`;
 
 export function saveSassHelpers(): void {
-  if (!existsSync(typographyHelperPath)) throw Error("Could not find typography helper file");
+  if (!existsSync(sassHelpersPath)) throw Error(`Could not find sass helpers folder at '${sassHelpersPath}'`);
 
-  const outputPath = `${outputFolder()}/scss/TypographyHelpers.scss`;
-  writeFileSync(outputPath, readFileSync(typographyHelperPath));
+  const outputPath = `${outputFolder()}/scss`;
+  copySassHelper(outputPath, "TypographyHelpers.scss");
+  copySassHelper(outputPath, "ColorHelpers.scss");
+}
+
+function copySassHelper(outputPath: string, fileName: string): void {
+  const fileContents = readFileSync(`${sassHelpersPath}/${fileName}`);
+  writeFileSync(`${outputPath}/${fileName}`, fileContents);
   consoleLogInStyleDictionaryStyle(`✔︎ ${outputPath}`);
 }
 
