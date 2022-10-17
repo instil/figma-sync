@@ -1027,10 +1027,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.6.5":
-  version: 18.6.5
-  resolution: "@types/node@npm:18.6.5"
-  checksum: e3e66c9a84b94010a57c1b9dac882c08484278d74f9d120dbe6a3e45d00740d178bd1d34a5deee28197c94b9f4359153b637bab9b305328e865027e9987a0f3d
+"@types/node@npm:18.11.0":
+  version: 18.11.0
+  resolution: "@types/node@npm:18.11.0"
+  checksum: f27f899ab428e5732f04fadadc9203f44bdf3abf56474540ee27da90e4f2ba133faf87263cada4d2271955f92ee6a142bd50683c86290fe5070c19aac44fd654
   languageName: node
   linkType: hard
 
@@ -2007,7 +2007,7 @@ __metadata:
   dependencies:
     "@types/jest": 28.1.6
     "@types/lodash": 4.14.182
-    "@types/node": 18.6.5
+    "@types/node": 18.11.0
     "@typescript-eslint/eslint-plugin": 5.33.0
     "@typescript-eslint/parser": 5.33.0
     axios: 0.27.2
