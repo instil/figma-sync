@@ -1,28 +1,42 @@
 {
-  "name": "design-sync",
-  "version": "1.6.0",
+  "name": "@instil/figma-sync",
+  "version": "2.0.1",
   "description": "Syncing a figma design system into code via a 'pull' model",
   "homepage": "https://github.com/instil/design-sync",
   "author": "neil.armstrong@instil.co",
   "license": "MIT",
-  "main": "build/src/SyncFigmaWithoutIcons.js",
-  "types": "build/src/Types.d.ts",
+  "main": "build/cjs/src/SyncFigmaWithoutIcons.js",
+  "types": "build/cjs/types/Types.d.ts",
   "files": [
-    "build/**"
+    "build/**/*"
   ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./build/esm/types/Types.d.ts",
+        "default": "./build/esm/src/SyncFigmaWithoutIcons.mjs"
+      },
+      "require": {
+        "types": "./build/cjs/types/Types.d.ts",
+        "default": "./build/cjs/src/SyncFigmaWithoutIcons.js"
+      }
+    }
+  },
   "bin": {
-    "figma-sync": "./build/src/SyncFigmaWithoutIcons.js",
-    "figma-sync:withIcons": "./build/src/SyncFigmaWithIcons.js"
+    "figma-sync": "./build/cjs/src/SyncFigmaWithoutIcons.js",
+    "figma-sync:withIcons": "./build/cjs/src/SyncFigmaWithIcons.js"
   },
   "scripts": {
     "build": "yarn checks && yarn compile",
     "checks": "yarn lint && yarn test",
     "lint": "yarn eslint --max-warnings=0 \"./src/**/*.{ts,tsx}\"",
     "test": "yarn jest --passWithNoTests",
-    "publish": "yarn package && yarn npm publish",
+    "publish": "yarn package && yarn npm publish --access=public",
     "package": "yarn compile && yarn npm-pack-all --output package.tgz",
     "compile": "yarn compile:typescript && yarn compile:copyAssets",
-    "compile:typescript": "rm -rf ./build && yarn ttsc --p ./tsconfig.json",
+    "compile:typescript": "rm -rf ./build && yarn compile:typescript:esm && yarn compile:typescript:cjs",
+    "compile:typescript:esm": "yarn ttsc --p ./tsconfig.esm.json && mv build/esm/src/SyncFigmaWithoutIcons.js build/esm/src/SyncFigmaWithoutIcons.mjs",
+    "compile:typescript:cjs": "yarn ttsc --p ./tsconfig.cjs.json",
     "compile:copyAssets": "cp -r ./scss-helpers ./build/scss-helpers",
     "sync": "yarn ts-node -r tsconfig-paths/register src/SyncFigmaWithoutIcons.ts",
     "sync:icons": "yarn ts-node -r tsconfig-paths/register src/SyncFigmaWithIcons.ts",
@@ -36,12 +50,12 @@
     "style-dictionary": "3.7.1"
   },
   "devDependencies": {
+    "@instil/figma-sync": "2.0.1",
     "@types/jest": "28.1.6",
     "@types/lodash": "4.14.182",
     "@types/node": "18.6.5",
     "@typescript-eslint/eslint-plugin": "5.33.0",
     "@typescript-eslint/parser": "5.33.0",
-    "design-sync": "1.6.0",
     "eslint": "8.21.0",
     "eslint-plugin-import": "2.26.0",
     "eslint-plugin-jest": "26.8.2",

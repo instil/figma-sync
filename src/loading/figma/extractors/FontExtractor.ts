@@ -24,7 +24,7 @@ export function extractFonts(figmaGetFileResult: GetFileResult): DesignTokenFont
   const fonts = fontFrames.map(fontFrame => {
     console.log(`Extracting ${fontFrame.name} fonts...`);
     const fonts = extractFrontsFromFrame(figmaGetFileResult, fontFrame);
-    console.log("Desktop font extraction complete!");
+    console.log(`${fontFrame.name} font extraction complete!`);
     return fonts;
   });
 
@@ -53,7 +53,10 @@ function extractFrontsFromFrame(figmaGetFileResult: GetFileResult, frame: FRAME 
     const sampleContainer = findChild<FRAME>(stackItemChildrenContainer, maybeSampleContainer => isFrame(maybeSampleContainer) && maybeSampleContainer.name === "Sample");
     if (!sampleContainer) throw Error("No sample container found for type stack, is figma setup correctly?");
 
-    sampleContainer.children.forEach(fontSpec => {
+    for (const fontSpec of sampleContainer.children) {
+      if (fontSpec.visible !== undefined && !fontSpec.visible) {
+        continue;
+      }
       if (!isText(fontSpec)) throw Error("Font node was not of type text, is figma setup correctly?");
 
       const style = getTextStyle(figmaGetFileResult, fontSpec);
@@ -80,16 +83,21 @@ function extractFrontsFromFrame(figmaGetFileResult: GetFileResult, frame: FRAME 
           type: "typography"
         }
       };
-    });
+    }
   });
   return designTokens;
 }
 
 function getTextStyle(figmaGetFileResult: GetFileResult, fontSpec: TEXT): Style {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore. Ignored due to typescript types being wrong. Expects `styles.TEXT` but is actually `styles.text`
+  const styleKeyToFind = fontSpec.styles?.text;
+  if (!styleKeyToFind) {
+    throw Error("Could not get text style as the style key provided is undefined");
+  }
+
   const styleKey = Object.keys(figmaGetFileResult.styles).find((key) => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore. Ignored due to typescript types being wrong. Expects `styles.TEXT` but is actually `styles.text`
-    return key === fontSpec.styles?.text;
+    return key === styleKeyToFind;
   });
   if (!styleKey) throw Error("Could not find text style for font, has a style been generated on figma for this font?");
 
