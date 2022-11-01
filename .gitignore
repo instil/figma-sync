@@ -47,7 +47,7 @@ build/Release
 # dependencies
 /node_modules
 
-DesignSync.config.json
+DesignSync.config.ts
 style-dictionary-source/token.json
 generated
 build

@@ -1,4 +1,4 @@
-# Design sync
+# Figma sync
 
 An alternative solution for syncing a figma design system from into code. Rather than the traditional approach of using a plugin within figma to generate files (a "push" model) this offers the ability to use the Figma API to "pull" from Figma directly.
 
@@ -17,13 +17,17 @@ https://blog.jacobtan.co/extracting-svgs-using-figma-api.
 ## Install
 `$ yarn add --dev figma-sync`
 
-Create a `DesignSync.config.json` at in the root directory with the following:
+Create a `DesignSync.config.ts` at in the root directory with the following:
 ```
-{
-  "figmaPageId": "<id of the figma page to sync from>",
-  "figmaApiKey": "<your figma api key>",
-  "outputFolder": "<the folder to save the synced styles and icons>"
+import {DesignSyncConfig} from "@instil/figma-sync";
+
+const config: DesignSyncConfig = {
+  figmaPageId: "<id of the figma page to sync from>",
+  figmaApiKey: "<your figma api key>",
+  outputFolder: "<the folder to save the synced styles and icons>"
 }
+
+export default config;
 ```
 
 ### Getting the id of a figma file
@@ -68,7 +72,7 @@ Add the following line to your css class to use the provided mixin
 @use "path-to-generated-folder/scss/TypographyHelpers";
 
 .someKindOfClass {
-  @include TypographyHelpers.useFont("Text M/Desktop Regular");
+  @include TypographyHelpers.useFont("Text/M/Regular");
 }
 ```
 

@@ -28,8 +28,8 @@ function getSassHelpersPath(): string {
   const pathWhenExecutingViaTsNode = `${rootFolder}/../../${folderName}`;
   if (existsSync(pathWhenExecutingViaTsNode)) return pathWhenExecutingViaTsNode;
 
-  const pathWhenExecutingViaBuildFolder = `${rootFolder}/../../../${folderName}`
+  const pathWhenExecutingViaBuildFolder = `${rootFolder}/../../../${folderName}`;
   if (existsSync(pathWhenExecutingViaBuildFolder)) return pathWhenExecutingViaBuildFolder;
 
-  throw Error(`Could not find sass helpers folder`);
+  throw Error("Could not find sass helpers folder");
 }

@@ -1,21 +1,25 @@
 import type {DesignSyncConfig} from "@src/config/types/DesignSyncConfig";
 import {isDesignSyncConfig} from "@src/config/types/DesignSyncConfig";
-import {fileExistsSync} from "tsconfig-paths/lib/filesystem";
+import {existsSync, readFileSync} from "fs";
+import {transpile} from "typescript";
+import {default as requireFromString} from "require-from-string";
 
-const configPath = `${process.cwd()}/DesignSync.config.json`;
+const configPath = `${process.cwd()}/DesignSync.config.ts`;
 let config: DesignSyncConfig;
 
 export async function loadConfig(): Promise<void> {
-  if (!fileExistsSync(configPath)) throw Error(`Could not find configuration file at '${configPath}'. Please follow the readme instructions.`);
+  if (!existsSync(configPath)) throw Error(`Could not find configuration file at '${configPath}'. Please follow the readme instructions.`);
 
-  const parsedConfigFile = await import(configPath);
+  const asTypescript = readFileSync(configPath).toString("utf-8");
+  const asJavascript = transpile(asTypescript);
+  const result = requireFromString(asJavascript)?.default;
 
-  if (!isDesignSyncConfig(parsedConfigFile.default)) {
+  if (!isDesignSyncConfig(result)) {
     console.log("Loaded config", config);
     throw Error("Configuration file did not match expect config, please use the typescript interface provided");
   }
 
-  config = parsedConfigFile.default;
+  config = result;
 }
 
 export const figmaId = (): string => config.figmaPageId;

@@ -28,7 +28,7 @@ it("should save helper files when exists locally", () => {
 it("should throw error if helpers folder does not exist", () => {
   existsSyncMock.mockReturnValue(false);
 
-  expect(() => target.saveSassHelpers()).toThrow(/^Could not find sass helpers folder at '/);
+  expect(() => target.saveSassHelpers()).toThrow("Could not find sass helpers folder");
 
   expect(readFileSyncMock).not.toHaveBeenCalled();
   expect(writeFileSyncMock).not.toHaveBeenCalled();
