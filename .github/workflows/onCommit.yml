@@ -8,7 +8,7 @@ jobs:
 
     steps:
       - name: Clone project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Setup project
         uses: ./.github/reusable-actions/setup-project
