@@ -23,11 +23,10 @@ $-tokenMap: map.get(typography.$tokens, "fonts");
       font-family: $font;
     }
 
-    // Disabled for now as it was causing weird resizing issues on editing a label
-    //$lineHeight: map.get($-namespace, "lineheight");
-    //@if $lineHeight {
-    //  line-height: $lineHeight;
-    //}
+    $lineHeight: map.get($-namespace, "lineheight");
+    @if $lineHeight {
+      line-height: $lineHeight;
+    }
 
     $fontSize: map.get($-namespace, "size");
     @if $fontSize {
