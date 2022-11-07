@@ -39,6 +39,6 @@
     "src/**/*.debug.ts",
     "build",
     "jest.config.js",
-    "./DesignSync.config.ts"
+    "./FigmaSync.config.ts"
   ]
 }

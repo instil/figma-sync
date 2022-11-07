@@ -1,1 +1,1 @@
-export * from "./config/types/DesignSyncConfig";
+export * from "./config/types/FigmaSyncConfig";

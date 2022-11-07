@@ -447,28 +447,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instil/figma-sync@npm:3.0.3":
-  version: 3.0.3
-  resolution: "@instil/figma-sync@npm:3.0.3"
-  dependencies:
-    axios: 0.27.2
-    figma-api: 1.10.1
-    lodash: 4.17.21
-    require-from-string: 2.0.2
-    style-dictionary: 3.7.1
-    typescript: 4.7.4
-  bin:
-    figma-sync: ./build/cjs/src/SyncFigmaWithoutIcons.js
-    "figma-sync:withIcons": ./build/cjs/src/SyncFigmaWithIcons.js
-  checksum: e91261116496d88fb865a09f1dd34f478f7ee981e9d45b6e6629b30ecaf8f0ecbae6f0b5043660db85faee4f2ec2df90cd280061150e683ed6f24fc579a7e86d
-  languageName: node
-  linkType: hard
-
-"@instil/figma-sync@workspace:.":
+"@instil/figma-sync@4.0.0, @instil/figma-sync@workspace:.":
   version: 0.0.0-use.local
   resolution: "@instil/figma-sync@workspace:."
   dependencies:
-    "@instil/figma-sync": 3.0.3
+    "@instil/figma-sync": 4.0.0
     "@types/jest": 28.1.6
     "@types/lodash": 4.14.182
     "@types/node": 18.6.5

@@ -15,13 +15,13 @@ and
 https://blog.jacobtan.co/extracting-svgs-using-figma-api.
 
 ## Install
-`$ yarn add --dev figma-sync`
+`$ yarn add --dev @instil/figma-sync`
 
-Create a `DesignSync.config.ts` at in the root directory with the following:
+Create a `FigmaSync.config.ts` at in the root directory with the following:
 ```
-import {DesignSyncConfig} from "@instil/figma-sync";
+import {FigmaSyncConfig} from "@instil/figma-sync";
 
-const config: DesignSyncConfig = {
+const config: FigmaSyncConfig = {
   figmaPageId: "<id of the figma page to sync from>",
   figmaApiKey: "<your figma api key>",
   outputFolder: "<the folder to save the synced styles and icons>"
