@@ -69,6 +69,6 @@
     "ts-node": "10.9.1",
     "tsconfig-paths": "4.1.0",
     "ttypescript": "1.5.13",
-    "typescript-transform-paths": "3.3.1"
+    "typescript-transform-paths": "3.4.4"
   }
 }
