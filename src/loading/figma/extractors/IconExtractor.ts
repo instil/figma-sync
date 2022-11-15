@@ -11,6 +11,10 @@ export async function extractIcons(figmaGetFileResult: GetFileResult): Promise<S
   console.log("Extracting icons...");
 
   const fontFrame = extractPage({figmaGetFileResult, pageName});
+  if (!fontFrame) {
+    console.warn(`When trying to extract icons could not find page called '${pageName}', is figma setup correctly?`);
+    return {};
+  }
 
   const iconContainers = filterChildren(fontFrame, isComponent);
 

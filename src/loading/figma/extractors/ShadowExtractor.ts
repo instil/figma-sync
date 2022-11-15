@@ -15,6 +15,10 @@ export function extractShadows(figmaGetFileResult: GetFileResult): DesignTokenSh
   console.log("Extracting spacers...");
 
   const styleFrame = extractFrame({figmaGetFileResult, pageName, frameName});
+  if (!styleFrame) {
+    console.warn(`When trying to extract shadows could not find frame called '${frameName}' on page '${pageName}', is figma setup correctly?`);
+    return {};
+  }
 
   const shadowFrames = filterChildren(styleFrame, isFrame);
   const designTokenShadows: DesignTokenShadows = {};

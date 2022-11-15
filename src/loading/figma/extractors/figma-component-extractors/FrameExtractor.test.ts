@@ -1,9 +1,9 @@
 import * as target from "./FrameExtractor";
 import type {GetFileResult} from "figma-api/lib/api-types";
 import {extractPage} from "./PageExtractor";
-import type {CANVAS} from "figma-api";
 import {buildTestNode} from "@src/loading/figma/types/figma-api/testing/BuildTestNode";
 import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
+import type {Node} from "figma-api/lib/ast-types";
 
 jest.mock("./PageExtractor");
 
@@ -17,13 +17,13 @@ const frame = {
   ...buildTestNode("FRAME"),
   name: frameName
 };
-const extractPageResultWithFrame: CANVAS = {
+const extractPageResultWithFrame: Node<"CANVAS"> = {
   children: [
     buildTestNode("BOOLEAN_OPERATION"),
     frame,
     buildTestNode("GROUP")
   ]
-} as CANVAS;
+} as Node<"CANVAS">;
 
 beforeEach(() => {
   extractPageMock.mockReturnValue(extractPageResultWithFrame);
@@ -36,31 +36,27 @@ it("should successfully extract frame", () => {
   expect(extractPageMock).toHaveBeenCalledWith({figmaGetFileResult, pageName});
 });
 
-it("should throw error if unable to extract frame due to page having no children", () => {
+it("should return undefined if unable to extract frame due to page having no children", () => {
   extractPageMock.mockReturnValue({
     ...extractPageResultWithFrame,
     children: []
   });
 
-  expect(() => target.extractFrame({figmaGetFileResult, pageName, frameName}))
-    .toThrow(new Error("Could not find frame on page page-name called frame-name, is figma setup correctly?"));
-
+  expect(target.extractFrame({figmaGetFileResult, pageName, frameName})).toBeUndefined();
   expect(extractPageMock).toHaveBeenCalledWith({figmaGetFileResult, pageName});
 });
 
-it("should throw error if unable to extract frame due to page having no frame as a child", () => {
+it("should return undefined if unable to extract frame due to page having no frame as a child", () => {
   extractPageMock.mockReturnValue({
     ...extractPageResultWithFrame,
     children: [buildTestNode("BOOLEAN_OPERATION")]
   });
 
-  expect(() => target.extractFrame({figmaGetFileResult, pageName, frameName}))
-    .toThrow(new Error("Could not find frame on page page-name called frame-name, is figma setup correctly?"));
-
+  expect(target.extractFrame({figmaGetFileResult, pageName, frameName})).toBeUndefined();
   expect(extractPageMock).toHaveBeenCalledWith({figmaGetFileResult, pageName});
 });
 
-it("should throw error if unable to extract frame due to page not having a frame with the correct name", () => {
+it("should return undefined if unable to extract frame due to page not having a frame with the correct name", () => {
   extractPageMock.mockReturnValue({
     ...extractPageResultWithFrame,
     children: [{
@@ -69,8 +65,6 @@ it("should throw error if unable to extract frame due to page not having a frame
     }]
   });
 
-  expect(() => target.extractFrame({figmaGetFileResult, pageName, frameName}))
-    .toThrow(new Error("Could not find frame on page page-name called frame-name, is figma setup correctly?"));
-
+  expect(target.extractFrame({figmaGetFileResult, pageName, frameName})).toBeUndefined();
   expect(extractPageMock).toHaveBeenCalledWith({figmaGetFileResult, pageName});
 });

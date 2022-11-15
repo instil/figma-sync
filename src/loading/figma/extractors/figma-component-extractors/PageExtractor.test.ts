@@ -24,7 +24,7 @@ it("should successfully extract frame", () => {
   expect(result).toEqual(page);
 });
 
-it("should throw error if unable to extract frame due to page having no children", () => {
+it("should return undefined if unable to extract frame due to page having no children", () => {
   const updatedFigmaGetFileResult: GetFileResult = {
     ...figmaGetFileResult,
     document: {
@@ -32,11 +32,10 @@ it("should throw error if unable to extract frame due to page having no children
     }
   } as unknown as GetFileResult;
 
-  expect(() => target.extractPage({figmaGetFileResult: updatedFigmaGetFileResult, pageName}))
-    .toThrow(new Error("Could not find page called page-name, is figma setup correctly?"));
+  expect(target.extractPage({figmaGetFileResult: updatedFigmaGetFileResult, pageName})).toBeUndefined();
 });
 
-it("should throw error if unable to extract frame due to page having no frame as a child", () => {
+it("should return undefined if unable to extract frame due to page having no frame as a child", () => {
   const updatedFigmaGetFileResult: GetFileResult = {
     ...figmaGetFileResult,
     document: {
@@ -44,11 +43,10 @@ it("should throw error if unable to extract frame due to page having no frame as
     }
   } as unknown as GetFileResult;
 
-  expect(() => target.extractPage({figmaGetFileResult: updatedFigmaGetFileResult, pageName}))
-    .toThrow(new Error("Could not find page called page-name, is figma setup correctly?"));
+  expect(target.extractPage({figmaGetFileResult: updatedFigmaGetFileResult, pageName})).toBeUndefined();
 });
 
-it("should throw error if unable to extract frame due to page not having a frame with the correct name", () => {
+it("should return undefined if unable to extract frame due to page not having a frame with the correct name", () => {
   const updatedFigmaGetFileResult: GetFileResult = {
     ...figmaGetFileResult,
     document: {
@@ -59,6 +57,5 @@ it("should throw error if unable to extract frame due to page not having a frame
     }
   } as unknown as GetFileResult;
 
-  expect(() => target.extractPage({figmaGetFileResult: updatedFigmaGetFileResult, pageName}))
-    .toThrow(new Error("Could not find page called page-name, is figma setup correctly?"));
+  expect(target.extractPage({figmaGetFileResult: updatedFigmaGetFileResult, pageName})).toBeUndefined();
 });
