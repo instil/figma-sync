@@ -453,7 +453,7 @@ __metadata:
   dependencies:
     "@instil/figma-sync": 4.1.0
     "@types/jest": 28.1.6
-    "@types/lodash": 4.14.182
+    "@types/lodash": 4.14.189
     "@types/node": 18.6.5
     "@types/require-from-string": 1.2.1
     "@typescript-eslint/eslint-plugin": 5.33.0
@@ -1040,10 +1040,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:4.14.182":
-  version: 4.14.182
-  resolution: "@types/lodash@npm:4.14.182"
-  checksum: 7dd137aa9dbabd632408bd37009d984655164fa1ecc3f2b6eb94afe35bf0a5852cbab6183148d883e9c73a958b7fec9a9bcf7c8e45d41195add6a18c34958209
+"@types/lodash@npm:4.14.189":
+  version: 4.14.189
+  resolution: "@types/lodash@npm:4.14.189"
+  checksum: 096d1e0954794fb76bd6a0ea443067f02004b53e3c59ac6e3fed88817a1468fc2e6614abdf44341f5e0fdff5f9a3c94a934cc9ff7126e07efbcd94355a21fe45
   languageName: node
   linkType: hard
 
