@@ -22,8 +22,8 @@ export async function loadConfig(): Promise<void> {
   config = result;
 }
 
-export const figmaId = (): string => config.figmaPageId;
-
-export const figmaApiKey = (): string => config.figmaApiKey;
-
-export const outputFolder = (): string => config.outputFolder;
+export const figmaId = (): FigmaSyncConfig["figmaPageId"] => config.figmaPageId;
+export const figmaApiKey = (): FigmaSyncConfig["figmaApiKey"] => config.figmaApiKey;
+export const outputFolder = (): FigmaSyncConfig["outputFolder"] => config.outputFolder;
+export const spacersConfig = (): FigmaSyncConfig["spacersConfig"] => config.spacersConfig;
+export const colorsConfig = (): FigmaSyncConfig["colorsConfig"] => config.colorsConfig;

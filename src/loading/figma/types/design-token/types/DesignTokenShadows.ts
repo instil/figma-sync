@@ -1,11 +1,12 @@
 import type {Effect} from "figma-api";
 import {round} from "lodash";
+import type {DesignToken} from "style-dictionary/types/DesignToken";
 
 export interface DesignTokenShadows {
   [key: string]: DesignTokenShadow;
 }
 
-interface DesignTokenShadow {
+interface DesignTokenShadow extends Pick<DesignToken, "attributes"> {
   value: BoxDropShadowDefinition | BoxInsetShadowDefinition;
   type: "shadows";
 }

@@ -5,7 +5,7 @@ import {StyleDictionary} from "./providers/StyleDictionary";
 import {buildTemporaryStyleDictionaryDirectory} from "./utils/StyleDictionaryDirectory";
 import type {Config} from "style-dictionary";
 import {castMockObject, mockFunction} from "@src/shared/testing/jest/JestHelpers";
-import {outputFolder} from "@src/config/providers/Config";
+import {colorsConfig, outputFolder} from "@src/config/providers/Config";
 
 jest.mock("fs");
 jest.mock("./providers/StyleDictionary");
@@ -19,6 +19,7 @@ const buildTemporaryStyleDictionaryDirectoryMock = mockFunction(buildTemporarySt
 const mkdirSyncMock = mockFunction(mkdirSync);
 const rmSyncMock = mockFunction(rmSync);
 const StyleDictionaryMock = castMockObject(StyleDictionary);
+const colorsConfigMock = mockFunction(colorsConfig);
 
 const tokens: DesignToken = {
   colors: {},
@@ -92,6 +93,38 @@ describe("when tokens are complied without an existing token directory", () => {
 
   it("should delete the style-directory temporary directory", () => {
     expect(rmSyncMock).toHaveBeenCalledWith("test-temporary-directory", {recursive: true});
+  });
+});
+
+describe("when include css variables configuration option exists", () => {
+  beforeEach(() => {
+    colorsConfigMock.mockReturnValue({
+      includeCssVariables: true
+    });
+
+    target.compileFigmaTokens(tokens);
+  });
+
+  it("should configure style dictionary with css variables file", () => {
+    expect(StyleDictionaryMock.extend).toHaveBeenCalledWith(<Config>{
+      ...expectedConfig,
+      platforms: {
+        ...expectedConfig.platforms,
+        scss: {
+          ...expectedConfig.platforms.scss,
+          files: [
+            ...(expectedConfig.platforms.scss.files ?? []),
+            {
+              destination: "_colors.variables.css",
+              format: "css/variables",
+              filter: {
+                type: "color"
+              }
+            }
+          ]
+        }
+      }
+    });
   });
 });
 

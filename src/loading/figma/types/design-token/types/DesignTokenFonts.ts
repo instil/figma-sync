@@ -1,26 +1,38 @@
+import type {DesignToken} from "style-dictionary/types/DesignToken";
+
 export interface DesignTokenFonts {
   [key: string]: DesignTokenFont;
 }
 
 interface DesignTokenFont {
-  family: {
-    value: string | `${string}, ${string}`;
-    type: "typography";
-  };
-  size: {
-    value: `${number}px` | string;
-    type: "typography";
-  };
-  weight: {
-    value: number;
-    type: "typography";
-  };
-  lineheight: {
-    value: `${number}px`;
-    type: "typography";
-  };
-  spacing: {
-    value: `${number}px` | "normal";
-    type: "typography";
-  };
+  family: DesignTokenFontFamily;
+  size: DesignTokenFontSize;
+  weight: DesignTokenFontWeight;
+  lineheight: DesignTokenFontLineHeight;
+  spacing: DesignTokenFontSpacing;
+}
+
+interface DesignTokenFontFamily extends Pick<DesignToken, "attributes"> {
+  value: string | `${string}, ${string}`;
+  type: "typography";
+}
+
+interface DesignTokenFontSize extends Pick<DesignToken, "attributes"> {
+  value: `${number}px` | string;
+  type: "typography";
+}
+
+interface DesignTokenFontWeight extends Pick<DesignToken, "attributes"> {
+  value: number;
+  type: "typography";
+}
+
+interface DesignTokenFontLineHeight extends Pick<DesignToken, "attributes"> {
+  value: `${number}px`;
+  type: "typography";
+}
+
+interface DesignTokenFontSpacing extends Pick<DesignToken, "attributes"> {
+  value: `${number}px` | "normal";
+  type: "typography";
 }

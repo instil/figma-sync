@@ -1,6 +1,5 @@
 import * as target from "./SpacerExtractor";
 import {logPercentage} from "./logging/PercentageLogger";
-import type {FRAME} from "figma-api";
 import {buildTestNode} from "@src/loading/figma/types/figma-api/testing/BuildTestNode";
 import type {GetFileResult} from "figma-api/lib/api-types";
 import {extractFrame} from "./figma-component-extractors/FrameExtractor";
@@ -8,12 +7,15 @@ import type {NodeWithChildren} from "./figma-component-extractors/children/types
 import type {Node} from "figma-api/lib/ast-types";
 import type {DesignTokenSpacers} from "@src/loading/figma/types/design-token/types/DesignTokenSpacers";
 import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
+import {buildSpacersUnitConverter} from "@src/loading/figma/utils/SpacersUnitConverter";
 
 jest.mock("./figma-component-extractors/FrameExtractor");
 jest.mock("./logging/PercentageLogger");
+jest.mock("@src/loading/figma/utils/SpacersUnitConverter");
 
 const extractFrameMock = mockFunction(extractFrame);
 const logPercentageMock = mockFunction(logPercentage);
+const buildSpacersUnitConverterMock = mockFunction(buildSpacersUnitConverter);
 
 const pixelTextNode: Node = {
   ...buildTestNode("TEXT"),
@@ -65,14 +67,14 @@ const nameContainer: Node = {
     nameNode2
   ]
 };
-const fontFrame: FRAME = {
+const fontFrame: Node<"FRAME"> = {
   ...buildTestNode("FRAME"),
   children: [
     nameContainer,
     buildTestNode("BOOLEAN_OPERATION"),
     pixelValueContainer
   ]
-} as FRAME;
+} as Node<"FRAME"> ;
 const figmaGetFileResult: GetFileResult = {} as unknown as GetFileResult;
 
 let result: ReturnType<typeof target.extractSpacers> | undefined;
@@ -80,6 +82,7 @@ let caughtError: unknown;
 
 beforeEach(() => {
   extractFrameMock.mockReturnValue(fontFrame);
+  buildSpacersUnitConverterMock.mockReturnValue(input => input);
 
   result = undefined;
   caughtError = undefined;

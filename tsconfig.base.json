@@ -3,6 +3,7 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "target": "ES6",
     "skipLibCheck": true,
     "checkJs": true,
     "allowJs": true,

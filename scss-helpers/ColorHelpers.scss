@@ -4,11 +4,15 @@
 $-tokenMap: map.get(colors.$tokens, "colors");
 
 // Go to the color file to find available color keys
-@function useColor($colorNamespace) {
+@function useColor($colorNamespace, $opacity: null) {
   $-colorValue: map.get($-tokenMap, $colorNamespace);
 
   @if $-colorValue == null {
     @error "Color namespace '#{$colorNamespace}' is invalid. Please select one of the following: [inherit, #{map.keys($-tokenMap)}]";
+  }
+
+  @if $opacity != null {
+    @return rgba($-colorValue, $opacity);
   }
 
   @return $-colorValue;
