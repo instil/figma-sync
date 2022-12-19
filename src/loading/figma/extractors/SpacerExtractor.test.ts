@@ -7,15 +7,18 @@ import type {NodeWithChildren} from "./figma-component-extractors/children/types
 import type {Node} from "figma-api/lib/ast-types";
 import type {DesignTokenSpacers} from "@src/loading/figma/types/design-token/types/DesignTokenSpacers";
 import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
-import {buildSpacersUnitConverter} from "@src/loading/figma/utils/SpacersUnitConverter";
+import {buildPixelUnitConverter} from "@src/loading/figma/utils/spacers-unit-converter/SpacersUnitConverter";
+import {spacersConfig} from "@src/config/providers/Config";
 
 jest.mock("./figma-component-extractors/FrameExtractor");
 jest.mock("./logging/PercentageLogger");
-jest.mock("@src/loading/figma/utils/SpacersUnitConverter");
+jest.mock("@src/loading/figma/utils/spacers-unit-converter/SpacersUnitConverter");
+jest.mock("@src/config/providers/Config");
 
 const extractFrameMock = mockFunction(extractFrame);
 const logPercentageMock = mockFunction(logPercentage);
-const buildSpacersUnitConverterMock = mockFunction(buildSpacersUnitConverter);
+const buildSpacersUnitConverterMock = mockFunction(buildPixelUnitConverter);
+const spacersConfigMock = mockFunction(spacersConfig);
 
 const pixelTextNode: Node = {
   ...buildTestNode("TEXT"),
@@ -83,6 +86,7 @@ let caughtError: unknown;
 beforeEach(() => {
   extractFrameMock.mockReturnValue(fontFrame);
   buildSpacersUnitConverterMock.mockReturnValue(input => input);
+  spacersConfigMock.mockReturnValue(undefined);
 
   result = undefined;
   caughtError = undefined;

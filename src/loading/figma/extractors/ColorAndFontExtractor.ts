@@ -9,10 +9,17 @@ import type {Style, TEXT} from "figma-api";
 import type {NodeWithFills, NodeWithStyles} from "@src/loading/figma/types/figma-api/NodeWithStyles";
 import {hasFills, hasStyleMap} from "@src/loading/figma/types/figma-api/NodeWithStyles";
 import {sortFields} from "@src/shared/stdlib/Objects";
+import {buildPixelUnitConverter} from "@src/loading/figma/utils/spacers-unit-converter/SpacersUnitConverter";
+import {typographyConfig} from "@src/config/providers/Config";
+import type {
+  PixelConversionFunction
+} from "@src/loading/figma/utils/spacers-unit-converter/types/PixelConversionFunction";
 
 export type PartialDesignToken = Partial<Pick<DesignToken, "fonts" | "colors">>;
 
 export function extractColorAndFont(figmaGetFileResult: GetFileResult): PartialDesignToken {
+  const convertPixelValues = buildPixelUnitConverter(typographyConfig());
+
   function extractStyles(previousValue: PartialDesignToken, node: Node): PartialDesignToken {
     if (isNodeWithChildren(node)) {
       for (const child of node.children) {
@@ -21,7 +28,7 @@ export function extractColorAndFont(figmaGetFileResult: GetFileResult): PartialD
     }
 
     if (hasStyleMap(node)) {
-      previousValue = addStyles(previousValue, node, figmaGetFileResult);
+      previousValue = addStyles(previousValue, node, figmaGetFileResult, convertPixelValues);
     }
 
     return previousValue;
@@ -34,19 +41,28 @@ export function extractColorAndFont(figmaGetFileResult: GetFileResult): PartialD
   return designToken;
 }
 
-function addStyles(previousValue: Partial<DesignToken>, node: NodeWithStyles, figmaGetFileResult: GetFileResult): Partial<DesignToken> {
+function addStyles(
+  previousValue: Partial<DesignToken>,
+  node: NodeWithStyles,
+  figmaGetFileResult: GetFileResult,
+  convertPixelValues: PixelConversionFunction
+): Partial<DesignToken> {
   if (hasFills(node)) {
     previousValue = extractColorStyles(previousValue, node, figmaGetFileResult);
   }
 
   if (isNodeType(node, "TEXT") && node.styles.text) {
-    previousValue = extractFontStyles(previousValue, node, figmaGetFileResult);
+    previousValue = extractFontStyles(previousValue, node, figmaGetFileResult, convertPixelValues);
   }
 
   return previousValue;
 }
 
-function extractColorStyles(designToken: Partial<DesignToken>, node: NodeWithFills, figmaGetFileResult: GetFileResult): Partial<DesignToken> {
+function extractColorStyles(
+  designToken: Partial<DesignToken>,
+  node: NodeWithFills,
+  figmaGetFileResult: GetFileResult
+): Partial<DesignToken> {
   const fillStyleId = node.styles?.fill ?? node.styles?.fills;
   if (!fillStyleId) {
     return designToken;
@@ -78,7 +94,12 @@ function extractColorStyles(designToken: Partial<DesignToken>, node: NodeWithFil
 
 const to8BitNumber = (input: number): number => Math.round(255 * input);
 
-function extractFontStyles(designToken: Partial<DesignToken>, node: NodeWithStyles & TEXT, figmaGetFileResult: GetFileResult): Partial<DesignToken> {
+function extractFontStyles(
+  designToken: Partial<DesignToken>,
+  node: NodeWithStyles & TEXT,
+  figmaGetFileResult: GetFileResult,
+  convertPixelValues: PixelConversionFunction
+): Partial<DesignToken> {
   const style = getTextStyle(figmaGetFileResult, node);
 
   if (designToken.fonts === undefined) {
@@ -92,15 +113,15 @@ function extractFontStyles(designToken: Partial<DesignToken>, node: NodeWithStyl
       type: "typography"
     },
     lineheight: {
-      value: `${node.style.lineHeightPx}px`,
+      value: convertPixelValues(`${node.style.lineHeightPx}px`),
       type: "typography"
     },
     size: {
-      value: `${node.style.fontSize}px`,
+      value: convertPixelValues(`${node.style.fontSize}px`),
       type: "typography"
     },
     spacing: {
-      value: `${node.style.letterSpacing}px`,
+      value: convertPixelValues(`${node.style.letterSpacing}px`),
       type: "typography"
     },
     weight: {

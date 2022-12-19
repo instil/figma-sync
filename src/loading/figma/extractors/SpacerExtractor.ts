@@ -6,7 +6,9 @@ import {isFrame} from "@src/loading/figma/types/figma-api/Frame";
 import {findChild} from "./figma-component-extractors/children/ChildFinder";
 import {filterChildren} from "./figma-component-extractors/children/ChildFilter";
 import {logPercentage} from "./logging/PercentageLogger";
-import {buildSpacersUnitConverter} from "@src/loading/figma/utils/SpacersUnitConverter";
+import {buildPixelUnitConverter} from "@src/loading/figma/utils/spacers-unit-converter/SpacersUnitConverter";
+import {spacersConfig} from "@src/config/providers/Config";
+import type {PixelUnitType} from "@src/loading/figma/utils/spacers-unit-converter/types/UnitType";
 
 const pageName = "   ↳ Spacing";
 const frameName = "Table";
@@ -30,7 +32,7 @@ export function extractSpacers(figmaGetFileResult: GetFileResult): DesignTokenSp
 
   if (nameNodes.length !== pixelValueNodes.length) throw Error("Spacing page's number of spacing names do not match the number of pixel values, is figma setup correctly?");
 
-  const spacersUnitConverter = buildSpacersUnitConverter();
+  const spacersUnitConverter = buildPixelUnitConverter(spacersConfig());
 
   const designTokens: DesignTokenSpacers = {};
   nameNodes.forEach((nameNode, index) => {
@@ -53,7 +55,7 @@ export function extractSpacers(figmaGetFileResult: GetFileResult): DesignTokenSp
     if (!pixelTextNode) throw Error("A spacing page's pixel node did not contain text node, is figma setup correctly?");
 
     designTokens[nameTextNode.characters] = {
-      value: spacersUnitConverter(pixelTextNode.characters),
+      value: spacersUnitConverter(pixelTextNode.characters as PixelUnitType),
       type: "spacers"
     };
   });

@@ -1,5 +1,5 @@
-import type {FigmaSyncConfig} from "@src/config/types/FigmaSyncConfig";
-import {isFigmaSyncConfig} from "@src/config/types/FigmaSyncConfig";
+import type {FigmaSyncConfig} from "@src/config/types/figma-sync-config/FigmaSyncConfig";
+import {isFigmaSyncConfig} from "@src/config/types/figma-sync-config/FigmaSyncConfig";
 import {existsSync, readFileSync} from "fs";
 import {transpile} from "typescript";
 import {default as requireFromString} from "require-from-string";
@@ -27,3 +27,4 @@ export const figmaApiKey = (): FigmaSyncConfig["figmaApiKey"] => config.figmaApi
 export const outputFolder = (): FigmaSyncConfig["outputFolder"] => config.outputFolder;
 export const spacersConfig = (): FigmaSyncConfig["spacersConfig"] => config.spacersConfig;
 export const colorsConfig = (): FigmaSyncConfig["colorsConfig"] => config.colorsConfig;
+export const typographyConfig = (): FigmaSyncConfig["typographyConfig"] => config.typographyConfig;

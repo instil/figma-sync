@@ -3,6 +3,15 @@ import type {GetFileResult} from "figma-api/lib/api-types";
 import type {NodeWithStyles, RealStylesMap} from "loading/figma/types/figma-api/NodeWithStyles";
 import type {Node, Paint, TypeStyle} from "figma-api/lib/ast-types";
 import type {PartialDesignToken} from "./ColorAndFontExtractor";
+import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
+import {typographyConfig} from "@src/config/providers/Config";
+import {buildPixelUnitConverter} from "@src/loading/figma/utils/spacers-unit-converter/SpacersUnitConverter";
+
+jest.mock("@src/config/providers/Config");
+jest.mock("@src/loading/figma/utils/spacers-unit-converter/SpacersUnitConverter");
+
+const typographyConfigMock = mockFunction(typographyConfig);
+const buildPixelUnitConverterMock = mockFunction(buildPixelUnitConverter);
 
 const styles: GetFileResult["styles"] = {
   "fill1": {
@@ -100,6 +109,11 @@ const figmaGetFileResult: GetFileResult = {
   styles,
   document
 } as unknown as GetFileResult;
+
+beforeEach(() => {
+  typographyConfigMock.mockReturnValue(undefined);
+  buildPixelUnitConverterMock.mockReturnValue(input => input);
+});
 
 it("should generate design token", () => {
   const result = target.extractColorAndFont(figmaGetFileResult);

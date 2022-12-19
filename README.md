@@ -53,6 +53,26 @@ So copy the part after `file/`
 
 ![](readme-assets/create-token.png)
 
+### Optional config
+
+These optional fields are also available
+
+```
+{
+  colorsConfig?: {
+    includeCssVariables?: boolean; // Adds a `_colors.variables.css` file to the generated folder for use at runtime
+  };
+  spacersConfig?: {
+    unitType: "px" | "rem";
+    baseFontSize?: number; // Optional entry when using "rem" that defaults to `16. Sets the base font size to base "rem" values off of
+  };
+  typographyConfig?: {
+    unitType: "px" | "rem";
+    baseFontSize?: number; // Optional entry when using "rem" that defaults to `16. Sets the base font size to base "rem" values off of
+  };
+}
+```
+
 ## Usage
 
 ### Sync styles (fast)

@@ -28,11 +28,11 @@ interface DesignTokenFontWeight extends Pick<DesignToken, "attributes"> {
 }
 
 interface DesignTokenFontLineHeight extends Pick<DesignToken, "attributes"> {
-  value: `${number}px`;
+  value: `${number}px` | `${number}rem`;
   type: "typography";
 }
 
 interface DesignTokenFontSpacing extends Pick<DesignToken, "attributes"> {
-  value: `${number}px` | "normal";
+  value: `${number}px` | `${number}rem` | "normal";
   type: "typography";
 }
