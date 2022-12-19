@@ -9,16 +9,16 @@ import type {Style, TEXT} from "figma-api";
 import type {NodeWithFills, NodeWithStyles} from "@src/loading/figma/types/figma-api/NodeWithStyles";
 import {hasFills, hasStyleMap} from "@src/loading/figma/types/figma-api/NodeWithStyles";
 import {sortFields} from "@src/shared/stdlib/Objects";
-import {buildPixelUnitConverter} from "@src/loading/figma/utils/spacers-unit-converter/SpacersUnitConverter";
+import {buildPixelUnitConvertor} from "@src/loading/figma/utils/pixel-unit-convertor/PixelUnitConvertor";
 import {typographyConfig} from "@src/config/providers/Config";
 import type {
   PixelConversionFunction
-} from "@src/loading/figma/utils/spacers-unit-converter/types/PixelConversionFunction";
+} from "@src/loading/figma/utils/pixel-unit-convertor/types/PixelConversionFunction";
 
 export type PartialDesignToken = Partial<Pick<DesignToken, "fonts" | "colors">>;
 
 export function extractColorAndFont(figmaGetFileResult: GetFileResult): PartialDesignToken {
-  const convertPixelValues = buildPixelUnitConverter(typographyConfig());
+  const convertPixelValues = buildPixelUnitConvertor(typographyConfig());
 
   function extractStyles(previousValue: PartialDesignToken, node: Node): PartialDesignToken {
     if (isNodeWithChildren(node)) {

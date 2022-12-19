@@ -1,4 +1,5 @@
 import type {DesignToken} from "style-dictionary/types/DesignToken";
+import type {PixelUnitType, UnitType} from "@src/shared/types/UnitType";
 
 export interface DesignTokenFonts {
   [key: string]: DesignTokenFont;
@@ -18,7 +19,7 @@ interface DesignTokenFontFamily extends Pick<DesignToken, "attributes"> {
 }
 
 interface DesignTokenFontSize extends Pick<DesignToken, "attributes"> {
-  value: `${number}px` | string;
+  value: PixelUnitType | string;
   type: "typography";
 }
 
@@ -28,11 +29,11 @@ interface DesignTokenFontWeight extends Pick<DesignToken, "attributes"> {
 }
 
 interface DesignTokenFontLineHeight extends Pick<DesignToken, "attributes"> {
-  value: `${number}px` | `${number}rem`;
+  value: UnitType;
   type: "typography";
 }
 
 interface DesignTokenFontSpacing extends Pick<DesignToken, "attributes"> {
-  value: `${number}px` | `${number}rem` | "normal";
+  value: UnitType | "normal";
   type: "typography";
 }

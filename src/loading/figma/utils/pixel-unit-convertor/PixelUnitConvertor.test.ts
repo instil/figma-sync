@@ -1,20 +1,20 @@
-import {buildPixelUnitConverter} from "./SpacersUnitConverter";
-import type {PixelUnitTypeConfig, RemUnitTypeConfig} from "./types/UnitConverterConfig";
-import type {OutputUnitType, PixelUnitType} from "./types/UnitType";
+import {buildPixelUnitConvertor} from "./PixelUnitConvertor";
+import type {PixelToPixelConvertorConfig, PixelToRemConvertorConfig} from "./types/ConvertorConfig";
+import type {UnitType, PixelUnitType} from "@src/shared/types/UnitType";
 
-let target: ReturnType<typeof buildPixelUnitConverter>;
+let target: ReturnType<typeof buildPixelUnitConvertor>;
 
 interface TestCase {
   input: PixelUnitType;
-  expected: OutputUnitType;
+  expected: UnitType;
 }
 
 describe("given a rem spacers config", () => {
   beforeEach(() => {
-    const config: RemUnitTypeConfig = {
+    const config: PixelToRemConvertorConfig = {
       unitType: "rem"
     };
-    target = buildPixelUnitConverter(config);
+    target = buildPixelUnitConvertor(config);
   });
 
   const testCases: TestCase[] = [
@@ -34,11 +34,11 @@ describe("given a rem spacers config", () => {
 
   describe("when the base font size is different", () => {
     beforeEach(() => {
-      const config: RemUnitTypeConfig = {
+      const config: PixelToRemConvertorConfig = {
         unitType: "rem",
         baseFontSize: 20
       };
-      target = buildPixelUnitConverter(config);
+      target = buildPixelUnitConvertor(config);
     });
 
     const testCases: TestCase[] = [
@@ -60,10 +60,10 @@ describe("given a rem spacers config", () => {
 
 describe("given a pixel spacers config", () => {
   beforeEach(() => {
-    const config: PixelUnitTypeConfig = {
+    const config: PixelToPixelConvertorConfig = {
       unitType: "px"
     };
-    target = buildPixelUnitConverter(config);
+    target = buildPixelUnitConvertor(config);
   });
 
   const testCases: TestCase[] = [
@@ -84,7 +84,7 @@ describe("given a pixel spacers config", () => {
 
 describe("given no config", () => {
   beforeEach(() => {
-    target = buildPixelUnitConverter(undefined);
+    target = buildPixelUnitConvertor(undefined);
   });
 
   const testCases: TestCase[] = [

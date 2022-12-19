@@ -6,9 +6,9 @@ import {isFrame} from "@src/loading/figma/types/figma-api/Frame";
 import {findChild} from "./figma-component-extractors/children/ChildFinder";
 import {filterChildren} from "./figma-component-extractors/children/ChildFilter";
 import {logPercentage} from "./logging/PercentageLogger";
-import {buildPixelUnitConverter} from "@src/loading/figma/utils/spacers-unit-converter/SpacersUnitConverter";
+import {buildPixelUnitConvertor} from "@src/loading/figma/utils/pixel-unit-convertor/PixelUnitConvertor";
 import {spacersConfig} from "@src/config/providers/Config";
-import type {PixelUnitType} from "@src/loading/figma/utils/spacers-unit-converter/types/UnitType";
+import type {PixelUnitType} from "@src/shared/types/UnitType";
 
 const pageName = "   ↳ Spacing";
 const frameName = "Table";
@@ -32,7 +32,7 @@ export function extractSpacers(figmaGetFileResult: GetFileResult): DesignTokenSp
 
   if (nameNodes.length !== pixelValueNodes.length) throw Error("Spacing page's number of spacing names do not match the number of pixel values, is figma setup correctly?");
 
-  const spacersUnitConverter = buildPixelUnitConverter(spacersConfig());
+  const spacersUnitConverter = buildPixelUnitConvertor(spacersConfig());
 
   const designTokens: DesignTokenSpacers = {};
   nameNodes.forEach((nameNode, index) => {

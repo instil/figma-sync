@@ -1,6 +1,6 @@
-import type {UnitTypeConfig} from "@src/loading/figma/utils/spacers-unit-converter/types/UnitConverterConfig";
-import {isUnitTypeConfig} from "@src/loading/figma/utils/spacers-unit-converter/types/UnitConverterConfig";
+import type {ConvertorConfig} from "@src/loading/figma/utils/pixel-unit-convertor/types/ConvertorConfig";
+import {isUnitConvertorConfig} from "@src/loading/figma/utils/pixel-unit-convertor/types/ConvertorConfig";
 
-export type SpacersConfig = UnitTypeConfig
+export type SpacersConfig = ConvertorConfig
 
-export const isSpacersConfig = isUnitTypeConfig;
+export const isSpacersConfig = isUnitConvertorConfig;
