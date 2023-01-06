@@ -474,7 +474,7 @@ __metadata:
     tsconfig-paths: 4.1.0
     ttypescript: 1.5.13
     typescript: 4.7.4
-    typescript-transform-paths: 3.3.1
+    typescript-transform-paths: 3.4.5
   bin:
     figma-sync: ./build/cjs/src/SyncFigmaWithoutIcons.js
     "figma-sync:withIcons": ./build/cjs/src/SyncFigmaWithIcons.js
@@ -5392,14 +5392,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript-transform-paths@npm:3.3.1":
-  version: 3.3.1
-  resolution: "typescript-transform-paths@npm:3.3.1"
+"typescript-transform-paths@npm:3.4.5":
+  version: 3.4.5
+  resolution: "typescript-transform-paths@npm:3.4.5"
   dependencies:
     minimatch: ^3.0.4
   peerDependencies:
     typescript: ">=3.6.5"
-  checksum: aa4d36c2767ae3c8801b03ecfc8cb2a1ca164f82b4abb34f14b20d5184fc62310d02ed34298d68934ba976e281cd7e6ba26ff7e89467e1dca2f561b3e88b306d
+  checksum: 865684d04750d40d5b25a2845a220e8c9d5422ec07802409c887998f78aa4ee4e6a2bf0aa7eccec6e7cbcee9531b0f6619979aa3993607d398758fbbba851d05
   languageName: node
   linkType: hard
 
