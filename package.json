@@ -49,7 +49,7 @@
     "lodash": "4.17.21",
     "require-from-string": "2.0.2",
     "style-dictionary": "3.7.1",
-    "typescript": "4.7.4"
+    "typescript": "4.9.5"
   },
   "devDependencies": {
     "@instil/figma-sync": "4.5.0",
