@@ -1,10 +1,7 @@
 import {extractIcons} from "./extractors/IconExtractor";
 import type {SvgDictionary} from "./types/design-token/SvgDictionary";
-import {figmaApi} from "./providers/FigmaApi";
-import {figmaId} from "@src/config/providers/Config";
+import type {GetFileResult} from "figma-api/lib/api-types";
 
-export async function getIcons(): Promise<SvgDictionary> {
-  const figmaGetFileResult = await figmaApi().getFile(figmaId());
-
+export async function getIcons(figmaGetFileResult: GetFileResult): Promise<SvgDictionary> {
   return await extractIcons(figmaGetFileResult);
 }

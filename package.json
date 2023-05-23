@@ -1,6 +1,6 @@
 {
   "name": "@instil/figma-sync",
-  "version": "4.5.1",
+  "version": "4.5.2",
   "description": "Syncing a figma design system into code via a 'pull' model",
   "homepage": "https://github.com/instil/design-sync",
   "author": "neil.armstrong@instil.co",
@@ -45,7 +45,7 @@
   },
   "dependencies": {
     "axios": "0.27.2",
-    "figma-api": "1.10.1",
+    "figma-api": "1.11.0",
     "lodash": "4.17.21",
     "require-from-string": "2.0.2",
     "style-dictionary": "3.7.1",
