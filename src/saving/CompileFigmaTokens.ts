@@ -50,20 +50,6 @@ function buildFilesConfig(): Config["platforms"]["scss"]["files"] {
       filter: {
         type: "typography"
       }
-    },
-    {
-      destination: "_shadows.scss",
-      format: "scss/variables",
-      filter: {
-        type: "shadows"
-      }
-    },
-    {
-      destination: "_spacers.scss",
-      format: "scss/variables",
-      filter: {
-        type: "spacers"
-      }
     }
   ];
 

@@ -1,6 +1,10 @@
-import type {ConvertorConfig} from "@src/loading/figma/utils/pixel-unit-convertor/types/ConvertorConfig";
-import {isUnitConvertorConfig} from "@src/loading/figma/utils/pixel-unit-convertor/types/ConvertorConfig";
+export type SpacersConfig = {
+  gridSize?: number;
+}
 
-export type SpacersConfig = ConvertorConfig
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function isSpacersConfig(maybeSpacersConfig: any): maybeSpacersConfig is SpacersConfig {
+  if (!maybeSpacersConfig.gridSize) return true;
 
-export const isSpacersConfig = isUnitConvertorConfig;
+  return Number.isNaN(maybeSpacersConfig.gridSize);
+}

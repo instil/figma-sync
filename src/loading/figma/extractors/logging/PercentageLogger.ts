@@ -6,10 +6,8 @@ interface Props {
 }
 
 type Type =
-  | "spacers"
   | "fonts"
   | "styles"
-  | "shadows"
   | "icons";
 
 export function logPercentage({type, index, length, extra}: Props): void {

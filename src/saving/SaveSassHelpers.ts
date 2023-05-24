@@ -1,25 +1,18 @@
-import {existsSync, readFileSync, writeFileSync} from "fs";
-import {outputFolder} from "@src/config/providers/Config";
+import {existsSync} from "fs";
+import {outputFolder, spacersConfig} from "@src/config/providers/Config";
+import {copySassHelper} from "@src/saving/utils/CopySassHelper";
 
 export function saveSassHelpers(): void {
   const sassHelpersPath = getSassHelpersPath();
   const outputPath = `${outputFolder()}/scss`;
   copySassHelper(sassHelpersPath, outputPath, "TypographyHelpers.scss");
   copySassHelper(sassHelpersPath, outputPath, "ColorHelpers.scss");
-}
-
-function copySassHelper(sassHelpersPath: string, outputPath: string, fileName: string): void {
-  const fileContents = readFileSync(`${sassHelpersPath}/${fileName}`);
-  writeFileSync(`${outputPath}/${fileName}`, fileContents);
-  consoleLogInStyleDictionaryStyle(`✔︎ ${outputPath}`);
-}
-
-function consoleLogInStyleDictionaryStyle(text: string): void {
-  const greenForeground = "\x1b[1m";
-  const boldText = "\x1b[32m";
-  const resetStyles = "\x1b[0m";
-
-  console.log(`${greenForeground}${boldText}%s${resetStyles}`, text);
+  copySassHelper(sassHelpersPath, outputPath, "SpacerHelpers.scss", {
+    replace: {
+      match: "$gridSize: 4px;",
+      with: `$gridSize: ${spacersConfig()?.gridSize ?? 4}px;`
+    }
+  });
 }
 
 function getSassHelpersPath(): string {

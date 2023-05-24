@@ -4,10 +4,9 @@ An alternative solution for syncing a figma design system from into code. Rather
 
 Currently supports
 - Colours
-- Spacers
-- Box shadows
 - Typography
 - SVG icons
+- Spacers
 
 Ideas taken from the work of
 https://blog.prototypr.io/design-tokens-with-figma-aef25c42430f#26f2
@@ -63,8 +62,7 @@ These optional fields are also available
     includeCssVariables?: boolean; // Adds a `_colors.variables.css` file to the generated folder for use at runtime
   };
   spacersConfig?: {
-    unitType: "px" | "rem";
-    baseFontSize?: number; // Optional entry when using "rem" that defaults to `16. Sets the base font size to base "rem" values off of
+    gridSize?: number; // Defaults to 4
   };
   typographyConfig?: {
     unitType: "px" | "rem";
@@ -104,6 +102,25 @@ Add the following line to find the correct color value
 
 .someKindOfClass {
   color: ColorHelpers.useColor("Primary/Light/60");
+}
+```
+
+### SpacerHelpers.scss
+
+Add the following line to find use the correct spacer value
+```
+@use "path-to-generated-folder/scss/SpacerHelpers";
+
+.someKindOfClass {
+  padding: SpacerHelpers.useSpacer(4); // aka 16px when using a grid size of 4px
+  
+  .myVerticalContainerOfStuff {
+    @include SpacerHelpers.verticalChildrenMargin(SpacerHelpers.useSpacer(2)); // Will add a spacer-2 between each vertical element, but not on the first and last element
+  }
+  
+  .myHorizontalContainerOfStuff {
+    @include SpacerHelpers.horizontalChildrenMargin(SpacerHelpers.useSpacer(2)); // Will add a spacer-2 between each horizontal element, but not on the first and last element
+  }
 }
 ```
 

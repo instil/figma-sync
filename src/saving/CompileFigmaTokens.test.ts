@@ -23,9 +23,7 @@ const colorsConfigMock = jest.mocked(colorsConfig);
 
 const tokens: DesignToken = {
   colors: {},
-  fonts: {},
-  shadows: {},
-  spacers: {}
+  fonts: {}
 };
 
 beforeEach(() => {
@@ -44,7 +42,7 @@ describe("when tokens are complied with an existing token directory", () => {
   it("should write json file to temporary directory", () => {
     expect(writeFileSyncMock).toHaveBeenCalledWith(
       "test-temporary-directory/token.json",
-      "{\"colors\":{},\"fonts\":{},\"shadows\":{},\"spacers\":{}}"
+      "{\"colors\":{},\"fonts\":{}}"
     );
   });
 
@@ -75,7 +73,7 @@ describe("when tokens are complied without an existing token directory", () => {
   it("should write json file to temporary directory", () => {
     expect(writeFileSyncMock).toHaveBeenCalledWith(
       "test-temporary-directory/token.json",
-      "{\"colors\":{},\"fonts\":{},\"shadows\":{},\"spacers\":{}}"
+      "{\"colors\":{},\"fonts\":{}}"
     );
   });
 
@@ -151,20 +149,6 @@ const expectedConfig: Config = {
           format: "scss/map-deep",
           filter: {
             type: "typography"
-          }
-        },
-        {
-          destination: "_shadows.scss",
-          format: "scss/variables",
-          filter: {
-            type: "shadows"
-          }
-        },
-        {
-          destination: "_spacers.scss",
-          format: "scss/variables",
-          filter: {
-            type: "spacers"
           }
         }
       ]

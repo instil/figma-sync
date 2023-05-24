@@ -1,0 +1,37 @@
+@use "sass:math";
+
+@function useSpacer($spacerNumber) {
+  $gridSize: 4px;
+
+  @return $spacerNumber * $gridSize;
+}
+
+@mixin horizontalChildrenMargin($spacing) {
+  > * {
+    margin-left: $spacing;
+    margin-right: $spacing;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin verticalChildrenMargin($spacing) {
+  > * {
+    margin-top: $spacing;
+    margin-bottom: $spacing;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
