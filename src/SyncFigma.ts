@@ -14,7 +14,10 @@ interface Configuration {
 export async function syncFigma(configuration?: Configuration): Promise<void> {
   await loadConfig();
 
+  console.log("Downloading figma file...");
   const figmaGetFileResult = await extractFile();
+  console.log("Downloading figma file complete!");
+
   await syncDesignTokens(figmaGetFileResult);
 
   if (configuration?.withIcons) await syncIcons(figmaGetFileResult);
