@@ -3,15 +3,14 @@ import type {GetFileResult} from "figma-api/lib/api-types";
 import type {NodeWithStyles, RealStylesMap} from "loading/figma/types/figma-api/NodeWithStyles";
 import type {Node, Paint, TypeStyle} from "figma-api/lib/ast-types";
 import type {PartialDesignToken} from "./ColorAndFontExtractor";
-import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
 import {typographyConfig} from "@src/config/providers/Config";
 import {buildPixelUnitConvertor} from "@src/loading/figma/utils/pixel-unit-convertor/PixelUnitConvertor";
 
 jest.mock("@src/config/providers/Config");
 jest.mock("@src/loading/figma/utils/pixel-unit-convertor/PixelUnitConvertor");
 
-const typographyConfigMock = mockFunction(typographyConfig);
-const buildPixelUnitConverterMock = mockFunction(buildPixelUnitConvertor);
+const typographyConfigMock = jest.mocked(typographyConfig);
+const buildPixelUnitConverterMock = jest.mocked(buildPixelUnitConvertor);
 
 const styles: GetFileResult["styles"] = {
   "fill1": {

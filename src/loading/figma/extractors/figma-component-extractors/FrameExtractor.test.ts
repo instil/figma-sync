@@ -2,12 +2,11 @@ import * as target from "./FrameExtractor";
 import type {GetFileResult} from "figma-api/lib/api-types";
 import {extractPage} from "./PageExtractor";
 import {buildTestNode} from "@src/loading/figma/types/figma-api/testing/BuildTestNode";
-import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
 import type {Node} from "figma-api/lib/ast-types";
 
 jest.mock("./PageExtractor");
 
-const extractPageMock = mockFunction(extractPage);
+const extractPageMock = jest.mocked(extractPage);
 
 const figmaGetFileResult: GetFileResult = {} as unknown as GetFileResult;
 const pageName = "page-name";

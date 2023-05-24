@@ -1,7 +1,6 @@
 import * as target from "./IconExtractor";
 import type {Node} from "figma-api/lib/ast-types";
 import {buildTestNode} from "@src/loading/figma/types/figma-api/testing/BuildTestNode";
-import type {CANVAS} from "figma-api";
 import type {GetFileResult} from "figma-api/lib/api-types";
 import {extractPage} from "./figma-component-extractors/PageExtractor";
 import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDictionary";
@@ -10,7 +9,7 @@ import {figmaApi} from "@src/loading/figma/providers/FigmaApi";
 import axios from "axios";
 import {figmaId} from "@src/config/providers/Config";
 import type {Api as FigmaApi} from "figma-api/lib/api-class";
-import {castMockObject, createMockObjectOf, mockFunction} from "@src/shared/testing/jest/JestHelpers";
+import {castMockObject, createMockObjectOf} from "@src/shared/testing/jest/JestHelpers";
 import {throttledRequest} from "./throttle/ThrottledRequest";
 
 jest.mock("./figma-component-extractors/PageExtractor");
@@ -20,13 +19,13 @@ jest.mock("@src/config/providers/Config");
 jest.mock("./throttle/ThrottledRequest");
 jest.mock("axios");
 
-const extractPageMock = mockFunction(extractPage);
-const logPercentageMock = mockFunction(logPercentage);
-const figmaIdMock = mockFunction(figmaId);
-const figmaApiBuilderMock = mockFunction(figmaApi);
+const extractPageMock = jest.mocked(extractPage);
+const logPercentageMock = jest.mocked(logPercentage);
+const figmaIdMock = jest.mocked(figmaId);
+const figmaApiBuilderMock = jest.mocked(figmaApi);
 const figmaApiMock = createMockObjectOf<FigmaApi>("getImage");
 const axiosMock = castMockObject(axios);
-const throttledRequestMock = mockFunction(throttledRequest);
+const throttledRequestMock = jest.mocked(throttledRequest);
 
 const svg1 = {
   ...buildTestNode("COMPONENT"),
@@ -42,13 +41,13 @@ const svg2 = {
     buildSvgInFrame("svg2")
   ]
 };
-const fontFrame: CANVAS = {
+const fontFrame: Node<"CANVAS"> = {
   ...buildTestNode("CANVAS"),
   children: [
     svg1,
     svg2
   ]
-} as unknown as CANVAS;
+} as Node<"CANVAS">;
 const figmaGetFileResult: GetFileResult = {} as unknown as GetFileResult;
 
 const svg = `
@@ -153,7 +152,7 @@ describe("when extracting fonts successfully", () => {
 
 describe("when no icon containers", () => {
   beforeEach(async () => {
-    const updatedFontFrame: CANVAS = {
+    const updatedFontFrame: Node<"CANVAS"> = {
       ...fontFrame,
       children: []
     };
@@ -186,7 +185,7 @@ describe("when no icon containers", () => {
 
 describe("when no svg id on frame or svg", () => {
   beforeEach(async () => {
-    const updatedFontFrame: CANVAS = {
+    const updatedFontFrame: Node<"CANVAS"> = {
       ...fontFrame,
       children: [
         {
@@ -238,7 +237,7 @@ describe("when no svg id on frame or svg", () => {
 
 describe("when no svg id on rectangle", () => {
   beforeEach(async () => {
-    const updatedFontFrame: CANVAS = {
+    const updatedFontFrame: Node<"CANVAS"> = {
       ...fontFrame,
       children: [
         {
@@ -290,7 +289,7 @@ describe("when no svg id on rectangle", () => {
 
 describe("when no svg id on svg", () => {
   beforeEach(async () => {
-    const updatedFontFrame: CANVAS = {
+    const updatedFontFrame: Node<"CANVAS"> = {
       ...fontFrame,
       children: [
         {
@@ -342,7 +341,7 @@ describe("when no svg id on svg", () => {
 
 describe("when no svg id on group", () => {
   beforeEach(async () => {
-    const updatedFontFrame: CANVAS = {
+    const updatedFontFrame: Node<"CANVAS"> = {
       ...fontFrame,
       children: [
         {
@@ -394,7 +393,7 @@ describe("when no svg id on group", () => {
 
 describe("when no svg id on vector", () => {
   beforeEach(async () => {
-    const updatedFontFrame: CANVAS = {
+    const updatedFontFrame: Node<"CANVAS"> = {
       ...fontFrame,
       children: [
         {
@@ -446,7 +445,7 @@ describe("when no svg id on vector", () => {
 
 describe("when no svg elements at all", () => {
   beforeEach(async () => {
-    const updatedFontFrame: CANVAS = {
+    const updatedFontFrame: Node<"CANVAS"> = {
       ...fontFrame,
       children: [
         {

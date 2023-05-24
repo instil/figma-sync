@@ -2,11 +2,10 @@ import * as target from "./GetIcons";
 import type {GetFileResult} from "figma-api/lib/api-types";
 import type {SvgDictionary} from "./types/design-token/SvgDictionary";
 import {extractIcons} from "./extractors/IconExtractor";
-import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
 
 jest.mock("./extractors/IconExtractor");
 
-const extractIconsMock = mockFunction(extractIcons);
+const extractIconsMock = jest.mocked(extractIcons);
 
 const getFileResult: GetFileResult = {} as unknown as GetFileResult;
 const extractIconsResult: SvgDictionary = {} as unknown as SvgDictionary;

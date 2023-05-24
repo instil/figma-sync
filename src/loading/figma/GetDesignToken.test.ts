@@ -6,16 +6,15 @@ import type {PartialDesignToken} from "./extractors/ColorAndFontExtractor";
 import {extractColorAndFont} from "./extractors/ColorAndFontExtractor";
 import {extractSpacers} from "./extractors/SpacerExtractor";
 import {extractShadows} from "./extractors/ShadowExtractor";
-import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
 import type {DesignTokenShadows} from "./types/design-token/types/DesignTokenShadows";
 
 jest.mock("./extractors/ColorAndFontExtractor");
 jest.mock("./extractors/SpacerExtractor");
 jest.mock("./extractors/ShadowExtractor");
 
-const extractColorAndFontMock = mockFunction(extractColorAndFont);
-const extractSpacersMock = mockFunction(extractSpacers);
-const extractShadowsMock = mockFunction(extractShadows);
+const extractColorAndFontMock = jest.mocked(extractColorAndFont);
+const extractSpacersMock = jest.mocked(extractSpacers);
+const extractShadowsMock = jest.mocked(extractShadows);
 
 const getFileResult: GetFileResult = {} as unknown as GetFileResult;
 const extractColorAndFontsResult: PartialDesignToken = {

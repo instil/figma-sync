@@ -1,20 +1,19 @@
 import * as target from "./ShadowExtractor";
 import type {GetFileResult} from "figma-api/lib/api-types";
-import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
 import {extractFrame} from "./figma-component-extractors/FrameExtractor";
 import {logPercentage} from "./logging/PercentageLogger";
-import type {FRAME} from "figma-api";
 import {buildTestNode} from "@src/loading/figma/types/figma-api/testing/BuildTestNode";
 import type {DesignTokenShadows} from "@src/loading/figma/types/design-token/types/DesignTokenShadows";
 import {BlendMode, EffectType} from "figma-api/lib/ast-types";
+import type {Node} from "figma-api";
 
 jest.mock("./figma-component-extractors/FrameExtractor");
 jest.mock("./logging/PercentageLogger");
 
-const extractFrameMock = mockFunction(extractFrame);
-const logPercentageMock = mockFunction(logPercentage);
+const extractFrameMock = jest.mocked(extractFrame);
+const logPercentageMock = jest.mocked(logPercentage);
 
-const dropShadowEffect: FRAME = {
+const dropShadowEffect: Node<"FRAME"> = {
   ...buildTestNode("FRAME"),
   name: "drop",
   effects: [
@@ -53,8 +52,8 @@ const dropShadowEffect: FRAME = {
       "spread": 0.5
     }
   ]
-} as unknown as FRAME;
-const insetShadowEffect: FRAME = {
+} as Node<"FRAME">;
+const insetShadowEffect: Node<"FRAME"> = {
   ...buildTestNode("FRAME"),
   name: "inset",
   effects: [{
@@ -74,11 +73,11 @@ const insetShadowEffect: FRAME = {
     "radius": 2,
     "spread": 1
   }]
-} as unknown as FRAME;
-const frame: FRAME = {
+} as Node<"FRAME">;
+const frame: Node<"FRAME"> = {
   ...buildTestNode("FRAME"),
   children: [dropShadowEffect, insetShadowEffect]
-} as unknown as FRAME;
+} as Node<"FRAME">;
 const figmaGetFileResult: GetFileResult = {} as unknown as GetFileResult;
 
 let result: ReturnType<typeof target.extractShadows> | undefined;
@@ -134,17 +133,18 @@ describe("when extracting shadows successfully", () => {
 
 describe("when no valid effects are available", () => {
   beforeEach(() => {
-    const updatedFrame: FRAME = {
+    const updatedFrame: Node<"FRAME"> = {
       ...frame,
       children: [
         {
           ...dropShadowEffect,
-          effects: [
-            dropShadowEffect.effects.map(effect => ({...effect, type: EffectType.BACKGROUND_BLUR}))
-          ]
+          effects: dropShadowEffect.effects.map(effect => ({
+            ...effect,
+            type: EffectType.BACKGROUND_BLUR
+          }))
         }
       ]
-    } as unknown as FRAME;
+    };
     extractFrameMock.mockReturnValue(updatedFrame);
 
     try {

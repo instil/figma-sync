@@ -1,15 +1,14 @@
 import * as target from "./SaveSassHelpers";
 import {readFileSync, writeFileSync, existsSync} from "fs";
-import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
 import {outputFolder} from "@src/config/providers/Config";
 
 jest.mock("fs");
 jest.mock("@src/config/providers/Config");
 
-const readFileSyncMock = mockFunction(readFileSync);
-const writeFileSyncMock = mockFunction(writeFileSync);
-const existsSyncMock = mockFunction(existsSync);
-const outputFolderMock = mockFunction(outputFolder);
+const readFileSyncMock = jest.mocked(readFileSync);
+const writeFileSyncMock = jest.mocked(writeFileSync);
+const existsSyncMock = jest.mocked(existsSync);
+const outputFolderMock = jest.mocked(outputFolder);
 
 beforeEach(() => {
   existsSyncMock.mockReturnValue(true);

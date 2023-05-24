@@ -2,7 +2,7 @@ import * as target from "./FileExtractor";
 import type {GetFileNodesResult, GetFileResult} from "figma-api/lib/api-types";
 import type {NodeWithChildren} from "./figma-component-extractors/children/types/NodeWithChildren";
 import type {Node, Style} from "figma-api/lib/ast-types";
-import {createMockObjectOf, mockFunction} from "@src/shared/testing/jest/JestHelpers";
+import {createMockObjectOf} from "@src/shared/testing/jest/JestHelpers";
 import {figmaApi} from "@src/loading/figma/providers/FigmaApi";
 import type {Api as FigmaApi} from "figma-api/lib/api-class";
 import {figmaId} from "@src/config/providers/Config";
@@ -10,9 +10,9 @@ import {figmaId} from "@src/config/providers/Config";
 jest.mock("@src/loading/figma/providers/FigmaApi");
 jest.mock("@src/config/providers/Config");
 
-const figmaApiBuilderMock = mockFunction(figmaApi);
+const figmaApiBuilderMock = jest.mocked(figmaApi);
 const figmaApiMock = createMockObjectOf<FigmaApi>("getFile", "getFileNodes");
-const figmaIdMock = mockFunction(figmaId);
+const figmaIdMock = jest.mocked(figmaId);
 
 const getFileResult: GetFileResult = {
   document: {

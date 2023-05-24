@@ -3,16 +3,15 @@ import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDicti
 import {mkdirSync, writeFileSync} from "fs";
 import {logPercentage} from "@src/loading/figma/extractors/logging/PercentageLogger";
 import {iconBuildFolder} from "./utils/IconsDirectory";
-import {mockFunction} from "@src/shared/testing/jest/JestHelpers";
 
 jest.mock("fs");
 jest.mock("@src/loading/figma/extractors/logging/PercentageLogger");
 jest.mock("./utils/IconsDirectory");
 
-const mkdirSyncMock = mockFunction(mkdirSync);
-const writeFileSyncMock = mockFunction(writeFileSync);
-const logPercentageMock = mockFunction(logPercentage);
-const iconBuildFolderMock = mockFunction(iconBuildFolder);
+const mkdirSyncMock = jest.mocked(mkdirSync);
+const writeFileSyncMock = jest.mocked(writeFileSync);
+const logPercentageMock = jest.mocked(logPercentage);
+const iconBuildFolderMock = jest.mocked(iconBuildFolder);
 
 const icons: SvgDictionary = {
   svg1: "svg1-content",

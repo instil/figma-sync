@@ -4,7 +4,7 @@ import {existsSync, mkdirSync, rmSync, writeFileSync} from "fs";
 import {StyleDictionary} from "./providers/StyleDictionary";
 import {buildTemporaryStyleDictionaryDirectory} from "./utils/StyleDictionaryDirectory";
 import type {Config} from "style-dictionary";
-import {castMockObject, mockFunction} from "@src/shared/testing/jest/JestHelpers";
+import {castMockObject} from "@src/shared/testing/jest/JestHelpers";
 import {colorsConfig, outputFolder} from "@src/config/providers/Config";
 
 jest.mock("fs");
@@ -12,14 +12,14 @@ jest.mock("./providers/StyleDictionary");
 jest.mock("@src/config/providers/Config");
 jest.mock("./utils/StyleDictionaryDirectory");
 
-const existsSyncMock = mockFunction(existsSync);
-const writeFileSyncMock = mockFunction(writeFileSync);
-const outputFolderMock = mockFunction(outputFolder);
-const buildTemporaryStyleDictionaryDirectoryMock = mockFunction(buildTemporaryStyleDictionaryDirectory);
-const mkdirSyncMock = mockFunction(mkdirSync);
-const rmSyncMock = mockFunction(rmSync);
+const existsSyncMock = jest.mocked(existsSync);
+const writeFileSyncMock = jest.mocked(writeFileSync);
+const outputFolderMock = jest.mocked(outputFolder);
+const buildTemporaryStyleDictionaryDirectoryMock = jest.mocked(buildTemporaryStyleDictionaryDirectory);
+const mkdirSyncMock = jest.mocked(mkdirSync);
+const rmSyncMock = jest.mocked(rmSync);
 const StyleDictionaryMock = castMockObject(StyleDictionary);
-const colorsConfigMock = mockFunction(colorsConfig);
+const colorsConfigMock = jest.mocked(colorsConfig);
 
 const tokens: DesignToken = {
   colors: {},
