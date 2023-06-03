@@ -2,6 +2,7 @@ import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDicti
 import {mkdirSync, writeFileSync} from "fs";
 import {logPercentage} from "@src/loading/figma/extractors/logging/PercentageLogger";
 import {iconBuildFolder} from "./utils/IconsDirectory";
+import {join} from "path";
 
 export function saveIcons(icons: SvgDictionary): void {
   const iconDirectory = iconBuildFolder();
@@ -17,6 +18,6 @@ export function saveIcons(icons: SvgDictionary): void {
       index,
       length: entries.length
     });
-    writeFileSync(`${iconDirectory}/${key}.svg`, value);
+    writeFileSync(join(iconDirectory, `${key}.svg`), value);
   });
 }

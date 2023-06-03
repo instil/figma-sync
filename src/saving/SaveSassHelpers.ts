@@ -1,10 +1,11 @@
 import {existsSync} from "fs";
 import {outputFolder, spacersConfig} from "@src/config/providers/Config";
 import {copySassHelper} from "@src/saving/utils/CopySassHelper";
+import {join} from "path";
 
 export function saveSassHelpers(): void {
   const sassHelpersPath = getSassHelpersPath();
-  const outputPath = `${outputFolder()}/scss`;
+  const outputPath = join(outputFolder(), "scss");
   copySassHelper(sassHelpersPath, outputPath, "TypographyHelpers.scss");
   copySassHelper(sassHelpersPath, outputPath, "ColorHelpers.scss");
   copySassHelper(sassHelpersPath, outputPath, "SpacerHelpers.scss", {
@@ -18,10 +19,10 @@ export function saveSassHelpers(): void {
 function getSassHelpersPath(): string {
   const folderName = "scss-helpers";
   const rootFolder = __dirname;
-  const pathWhenExecutingViaTsNode = `${rootFolder}/../../${folderName}`;
+  const pathWhenExecutingViaTsNode = join(rootFolder, "..", "..", folderName);
   if (existsSync(pathWhenExecutingViaTsNode)) return pathWhenExecutingViaTsNode;
 
-  const pathWhenExecutingViaBuildFolder = `${rootFolder}/../../../${folderName}`;
+  const pathWhenExecutingViaBuildFolder = join(rootFolder, "..", "..", "..", folderName);
   if (existsSync(pathWhenExecutingViaBuildFolder)) return pathWhenExecutingViaBuildFolder;
 
   throw Error("Could not find sass helpers folder");

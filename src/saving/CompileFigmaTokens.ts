@@ -1,4 +1,5 @@
 import type {Config} from "style-dictionary";
+import {join, sep as separator} from "path";
 import {existsSync, mkdirSync, writeFileSync, rmSync} from "fs";
 import type {DesignToken} from "@src/loading/figma/types/design-token/DesignToken";
 import {styleDictionaryFolderName, buildTemporaryStyleDictionaryDirectory} from "./utils/StyleDictionaryDirectory";
@@ -11,7 +12,7 @@ export function compileFigmaTokens(tokens: DesignToken): void {
   if (!existsSync(temporaryStyleDictionaryDirectory)) {
     mkdirSync(temporaryStyleDictionaryDirectory);
   }
-  writeFileSync(`${temporaryStyleDictionaryDirectory}/token.json`, JSON.stringify(tokens));
+  writeFileSync(join(temporaryStyleDictionaryDirectory, "token.json"), JSON.stringify(tokens));
 
   StyleDictionary.extend(buildStyleDictionaryConfig()).buildAllPlatforms();
 
@@ -21,11 +22,11 @@ export function compileFigmaTokens(tokens: DesignToken): void {
 }
 
 const buildStyleDictionaryConfig = (): Config => ({
-  source: [`${styleDictionaryFolderName}/**/*.json`],
+  source: [join(styleDictionaryFolderName, "**", "*.json")],
   platforms: {
     scss: {
       transformGroup: "scss",
-      buildPath: `${outputFolder()}/scss/`,
+      buildPath: join(outputFolder(), "scss", separator),
       options: {
         showFileHeader: false,
         outputReferences: false

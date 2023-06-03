@@ -1,4 +1,5 @@
 import {readFileSync, writeFileSync} from "fs";
+import {join} from "path";
 
 interface CopySassHelperOptions {
   replace?: {
@@ -9,12 +10,12 @@ interface CopySassHelperOptions {
 
 export function copySassHelper(sassHelpersPath: string, outputPath: string, fileName: string, options?: CopySassHelperOptions): void {
   const helperFileContents = readOriginalHelperFile(sassHelpersPath, fileName, options);
-  writeFileSync(`${outputPath}/${fileName}`, helperFileContents);
+  writeFileSync(join(outputPath, fileName), helperFileContents);
   consoleLogInStyleDictionaryStyle(`✔︎ ${outputPath}`);
 }
 
 function readOriginalHelperFile(sassHelpersPath: string, fileName: string, options?: CopySassHelperOptions): string {
-  const fileContents = readFileSync(`${sassHelpersPath}/${fileName}`).toString("utf-8");
+  const fileContents = readFileSync(join(sassHelpersPath, fileName)).toString("utf-8");
   if (!options?.replace) return fileContents;
 
   const regularExpression = new RegExp(options.replace.match, "g");

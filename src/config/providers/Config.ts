@@ -3,8 +3,9 @@ import {isFigmaSyncConfig} from "@src/config/types/figma-sync-config/FigmaSyncCo
 import {existsSync, readFileSync} from "fs";
 import {transpile} from "typescript";
 import {default as requireFromString} from "require-from-string";
+import {join} from "path";
 
-const configPath = `${process.cwd()}/FigmaSync.config.ts`;
+const configPath = join(process.cwd(), "FigmaSync.config.ts");
 let config: FigmaSyncConfig;
 
 export async function loadConfig(): Promise<void> {
