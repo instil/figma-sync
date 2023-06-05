@@ -2,7 +2,7 @@ import type {GetFileResult} from "figma-api/lib/api-types";
 import {extractPage} from "@src/loading/figma/extractors/figma-component-extractors/PageExtractor";
 import {filterChildren} from "@src/loading/figma/extractors/figma-component-extractors/children/ChildFilter";
 import {isComponent} from "@src/loading/figma/types/figma-api/Component";
-import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDictionary";
+import type {SvgDictionary} from "@src/shared/types/design-token/SvgDictionary";
 import {addSvgToDictionary} from "./icon-extractor/GetIcon";
 
 const pageName = "   ↳ Iconography";

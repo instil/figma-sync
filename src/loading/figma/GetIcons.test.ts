@@ -1,6 +1,6 @@
 import * as target from "./GetIcons";
 import type {GetFileResult} from "figma-api/lib/api-types";
-import type {SvgDictionary} from "./types/design-token/SvgDictionary";
+import type {SvgDictionary} from "@src/shared/types/design-token/SvgDictionary";
 import {extractIcons} from "./extractors/IconExtractor";
 
 jest.mock("./extractors/IconExtractor");

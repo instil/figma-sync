@@ -1,12 +1,12 @@
 import * as target from "./SaveIcons";
-import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDictionary";
+import type {SvgDictionary} from "@src/shared/types/design-token/SvgDictionary";
 import {mkdirSync, writeFileSync} from "fs";
-import {logPercentage} from "@src/loading/figma/extractors/logging/PercentageLogger";
-import {iconBuildFolder} from "./utils/IconsDirectory";
+import {logPercentage} from "@src/shared/logging/PercentageLogger";
+import {iconBuildFolder} from "./providers/IconsDirectory";
 
 jest.mock("fs");
-jest.mock("@src/loading/figma/extractors/logging/PercentageLogger");
-jest.mock("./utils/IconsDirectory");
+jest.mock("@src/shared/logging/PercentageLogger");
+jest.mock("./providers/IconsDirectory");
 
 const mkdirSyncMock = jest.mocked(mkdirSync);
 const writeFileSyncMock = jest.mocked(writeFileSync);

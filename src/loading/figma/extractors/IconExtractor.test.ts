@@ -3,8 +3,8 @@ import type {Node} from "figma-api/lib/ast-types";
 import {buildTestNode} from "@src/loading/figma/types/figma-api/testing/BuildTestNode";
 import type {GetFileResult} from "figma-api/lib/api-types";
 import {extractPage} from "./figma-component-extractors/PageExtractor";
-import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDictionary";
-import {logPercentage} from "./logging/PercentageLogger";
+import type {SvgDictionary} from "@src/shared/types/design-token/SvgDictionary";
+import {logPercentage} from "@src/shared/logging/PercentageLogger";
 import {figmaApi} from "@src/loading/figma/providers/FigmaApi";
 import axios from "axios";
 import {figmaId} from "@src/config/providers/Config";
@@ -13,7 +13,7 @@ import {castMockObject, createMockObjectOf} from "@src/shared/testing/jest/JestH
 import {throttledRequest} from "./throttle/ThrottledRequest";
 
 jest.mock("./figma-component-extractors/PageExtractor");
-jest.mock("@src/loading/figma/extractors/logging/PercentageLogger");
+jest.mock("@src/shared/logging/PercentageLogger");
 jest.mock("@src/loading/figma/providers/FigmaApi");
 jest.mock("@src/config/providers/Config");
 jest.mock("./throttle/ThrottledRequest");

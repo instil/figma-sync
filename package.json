@@ -1,6 +1,6 @@
 {
   "name": "@instil/figma-sync",
-  "version": "5.0.2",
+  "version": "5.1.0",
   "description": "Syncing a figma design system into code via a 'pull' model",
   "homepage": "https://github.com/instil/design-sync",
   "author": "neil.armstrong@instil.co",
@@ -38,8 +38,8 @@
     "compile:typescript:esm": "yarn ttsc --p ./tsconfig.esm.json && mv build/esm/src/Types.js build/esm/src/Types.mjs",
     "compile:typescript:cjs": "yarn ttsc --p ./tsconfig.cjs.json",
     "compile:copyAssets": "cp -r ./scss-helpers ./build/scss-helpers",
-    "sync": "yarn ts-node -r tsconfig-paths/register src/SyncFigmaWithoutIcons.ts",
-    "sync:icons": "yarn ts-node -r tsconfig-paths/register src/SyncFigmaWithIcons.ts",
+    "sync": "yarn ts-node src/SyncFigmaWithoutIcons.ts",
+    "sync:icons": "yarn ts-node src/SyncFigmaWithIcons.ts",
     "deployed-package:sync": "yarn figma-sync",
     "deployed-package:sync:icons": "yarn figma-sync:withIcons"
   },
@@ -48,7 +48,7 @@
     "figma-api": "1.11.0",
     "lodash": "4.17.21",
     "require-from-string": "2.0.2",
-    "style-dictionary": "3.7.1",
+    "style-dictionary": "3.8.0",
     "typescript": "4.7.4"
   },
   "devDependencies": {

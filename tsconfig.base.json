@@ -41,5 +41,8 @@
     "build",
     "jest.config.js",
     "./FigmaSync.config.ts"
-  ]
+  ],
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  }
 }

@@ -1,11 +1,11 @@
-import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDictionary";
+import type {SvgDictionary} from "@src/shared/types/design-token/SvgDictionary";
 import type {NodeAnd} from "@src/loading/figma/extractors/figma-component-extractors/children/ChildFilter";
 import {filterChildren} from "@src/loading/figma/extractors/figma-component-extractors/children/ChildFilter";
 import type {FRAME} from "figma-api";
 import {figmaApi} from "@src/loading/figma/providers/FigmaApi";
 import {figmaId} from "@src/config/providers/Config";
 import axios from "axios";
-import {logPercentage} from "@src/loading/figma/extractors/logging/PercentageLogger";
+import {logPercentage} from "@src/shared/logging/PercentageLogger";
 import {isFrame} from "@src/loading/figma/types/figma-api/Frame";
 import {isBooleanOperation} from "@src/loading/figma/types/figma-api/BooleanOperation";
 import {isGroup} from "@src/loading/figma/types/figma-api/Group";

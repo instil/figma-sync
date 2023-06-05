@@ -1,4 +1,4 @@
-import type {DesignToken} from "@src/loading/figma/types/design-token/DesignToken";
+import type {DesignToken} from "@src/shared/types/design-token/DesignToken";
 import type {Node} from "figma-api/lib/ast-types";
 import {isNodeType} from "figma-api/lib/ast-types";
 import {

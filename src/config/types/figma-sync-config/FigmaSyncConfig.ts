@@ -4,6 +4,7 @@ import type {SpacersConfig} from "@src/config/types/figma-sync-config/types/Spac
 import {isSpacersConfig} from "@src/config/types/figma-sync-config/types/SpacersConfig";
 import type {TypographyConfig} from "@src/config/types/figma-sync-config/types/TypographyConfig";
 import {isTypographyConfig} from "@src/config/types/figma-sync-config/types/TypographyConfig";
+import type {Platform} from "@src/config/types/figma-sync-config/types/Platform";
 
 export interface FigmaSyncConfig {
   figmaPageId: string;
@@ -12,6 +13,7 @@ export interface FigmaSyncConfig {
   colorsConfig?: ColorsConfig;
   spacersConfig?: SpacersConfig;
   typographyConfig?: TypographyConfig;
+  platform?: Platform;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

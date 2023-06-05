@@ -1,12 +1,13 @@
-import type {SvgDictionary} from "@src/loading/figma/types/design-token/SvgDictionary";
+import type {SvgDictionary} from "@src/shared/types/design-token/SvgDictionary";
 import {mkdirSync, writeFileSync} from "fs";
-import {logPercentage} from "@src/loading/figma/extractors/logging/PercentageLogger";
-import {iconBuildFolder} from "./utils/IconsDirectory";
+import {logPercentage} from "@src/shared/logging/PercentageLogger";
+import {iconBuildFolder} from "@src/saving/providers/IconsDirectory";
 import {join} from "path";
 
 export function saveIcons(icons: SvgDictionary): void {
-  const iconDirectory = iconBuildFolder();
+  console.log("Saving icons...");
 
+  const iconDirectory = iconBuildFolder();
   mkdirSync(iconDirectory, {
     recursive: true
   });
@@ -20,4 +21,6 @@ export function saveIcons(icons: SvgDictionary): void {
     });
     writeFileSync(join(iconDirectory, `${key}.svg`), value);
   });
+
+  console.log("Icon saving complete!\n");
 }

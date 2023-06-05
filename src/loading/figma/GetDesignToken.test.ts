@@ -1,5 +1,5 @@
 import * as target from "./GetDesignToken";
-import type {DesignToken} from "./types/design-token/DesignToken";
+import type {DesignToken} from "@src/shared/types/design-token/DesignToken";
 import type {GetFileResult} from "figma-api/lib/api-types";
 import type {PartialDesignToken} from "./extractors/ColorAndFontExtractor";
 import {extractColorAndFont} from "./extractors/ColorAndFontExtractor";

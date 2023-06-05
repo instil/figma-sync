@@ -29,3 +29,4 @@ export const outputFolder = (): FigmaSyncConfig["outputFolder"] => config.output
 export const spacersConfig = (): FigmaSyncConfig["spacersConfig"] => config.spacersConfig;
 export const colorsConfig = (): FigmaSyncConfig["colorsConfig"] => config.colorsConfig;
 export const typographyConfig = (): FigmaSyncConfig["typographyConfig"] => config.typographyConfig;
+export const platform = (): Required<FigmaSyncConfig["platform"]> => config.platform ?? "web";

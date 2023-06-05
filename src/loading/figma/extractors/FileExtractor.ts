@@ -4,10 +4,14 @@ import {figmaId} from "@src/config/providers/Config";
 import type {Node} from "figma-api/lib/ast-types";
 
 export async function extractFile(): Promise<GetFileResult> {
+  console.log("Downloading figma file...");
+
   const figmaGetFileResult = await figmaApi().getFile(figmaId(), {
     depth: 1
   });
   await downloadNodesForEachTopLevelPage(figmaGetFileResult);
+
+  console.log("Downloading figma file complete!");
   return figmaGetFileResult;
 }
 

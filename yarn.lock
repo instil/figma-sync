@@ -485,7 +485,7 @@ __metadata:
     lodash: 4.17.21
     npm-pack-all: 1.12.7
     require-from-string: 2.0.2
-    style-dictionary: 3.7.1
+    style-dictionary: 3.8.0
     ts-jest: 28.0.7
     ts-node: 10.9.1
     tsconfig-paths: 4.1.0
@@ -3897,6 +3897,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"json5@npm:^2.2.2":
+  version: 2.2.3
+  resolution: "json5@npm:2.2.3"
+  bin:
+    json5: lib/cli.js
+  checksum: 2a7436a93393830bce797d4626275152e37e877b265e94ca69c99e3d20c2b9dab021279146a39cdb700e71b2dd32a4cebd1514cd57cee102b1af906ce5040349
+  languageName: node
+  linkType: hard
+
 "jsonc-parser@npm:^3.0.0":
   version: 3.0.0
   resolution: "jsonc-parser@npm:3.0.0"
@@ -5136,6 +5145,25 @@ __metadata:
   bin:
     style-dictionary: bin/style-dictionary
   checksum: f2793b51d4c91625d1ee3385a2438c3fb0723183812c47f0fcea96703fc3a8a433ba4b496a3ab3d793c9827229d74483b4d8916d624d7d9bde5d36e8b18831fe
+  languageName: node
+  linkType: hard
+
+"style-dictionary@npm:3.8.0":
+  version: 3.8.0
+  resolution: "style-dictionary@npm:3.8.0"
+  dependencies:
+    chalk: ^4.0.0
+    change-case: ^4.1.2
+    commander: ^8.3.0
+    fs-extra: ^10.0.0
+    glob: ^7.2.0
+    json5: ^2.2.2
+    jsonc-parser: ^3.0.0
+    lodash: ^4.17.15
+    tinycolor2: ^1.4.1
+  bin:
+    style-dictionary: bin/style-dictionary
+  checksum: ed2440c2d1bd84593f9f60ffbfbb7c85c9592d125e169ea63e2044fe681191e8c9c156853d82ae606f9adf6aacbaa162e03d5ef85b80be334d76e28a57bfc189
   languageName: node
   linkType: hard
 
