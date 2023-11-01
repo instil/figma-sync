@@ -32,33 +32,105 @@ const expectedResult: GetFileResult = {
       {
         id: "1",
         children: [
-          {id: "1-1"} as NodeWithChildren,
-          {id: "1-2"} as NodeWithChildren,
-          {id: "1-3"} as NodeWithChildren
+          {
+            id: "1-1",
+            children: [
+              {id: "1-1-1"} as NodeWithChildren,
+              {id: "1-1-2"} as NodeWithChildren,
+              {id: "1-1-3"} as NodeWithChildren
+            ]
+          } as NodeWithChildren,
+          {
+            id: "1-2",
+            children: [
+              {id: "1-2-1"} as NodeWithChildren,
+              {id: "1-2-2"} as NodeWithChildren,
+              {id: "1-2-3"} as NodeWithChildren
+            ]
+          } as NodeWithChildren,
+          {
+            id: "1-3",
+            children: [
+              {id: "1-3-1"} as NodeWithChildren,
+              {id: "1-3-2"} as NodeWithChildren,
+              {id: "1-3-3"} as NodeWithChildren
+            ]
+          } as NodeWithChildren
         ]
       } as NodeWithChildren,
       {
         id: "2",
         children: [
-          {id: "2-1"} as NodeWithChildren,
-          {id: "2-2"} as NodeWithChildren,
-          {id: "2-3"} as NodeWithChildren
+          {
+            id: "2-1",
+            children: [
+              {id: "2-1-1"} as NodeWithChildren,
+              {id: "2-1-2"} as NodeWithChildren,
+              {id: "2-1-3"} as NodeWithChildren
+            ]
+          } as NodeWithChildren,
+          {
+            id: "2-2",
+            children: [
+              {id: "2-2-1"} as NodeWithChildren,
+              {id: "2-2-2"} as NodeWithChildren,
+              {id: "2-2-3"} as NodeWithChildren
+            ]
+          } as NodeWithChildren,
+          {
+            id: "2-3",
+            children: [
+              {id: "2-3-1"} as NodeWithChildren,
+              {id: "2-3-2"} as NodeWithChildren,
+              {id: "2-3-3"} as NodeWithChildren
+            ]
+          } as NodeWithChildren
         ]
       } as NodeWithChildren,
       {
         id: "3",
         children: [
-          {id: "3-1"} as NodeWithChildren,
-          {id: "3-2"} as NodeWithChildren,
-          {id: "3-3"} as NodeWithChildren
+          {
+            id: "3-1",
+            children: [
+              {id: "3-1-1"} as NodeWithChildren,
+              {id: "3-1-2"} as NodeWithChildren,
+              {id: "3-1-3"} as NodeWithChildren
+            ]
+          } as NodeWithChildren,
+          {
+            id: "3-2",
+            children: [
+              {id: "3-2-1"} as NodeWithChildren,
+              {id: "3-2-2"} as NodeWithChildren,
+              {id: "3-2-3"} as NodeWithChildren
+            ]
+          } as NodeWithChildren,
+          {
+            id: "3-3",
+            children: [
+              {id: "3-3-1"} as NodeWithChildren,
+              {id: "3-3-2"} as NodeWithChildren,
+              {id: "3-3-3"} as NodeWithChildren
+            ]
+          } as NodeWithChildren
         ]
       } as NodeWithChildren
     ]
   } as Node<"DOCUMENT">,
   styles: {
     "1-1": {} as unknown as Style,
+    "1-1-1": {} as unknown as Style,
+    "1-2-1": {} as unknown as Style,
+    "1-3-1": {} as unknown as Style,
     "2-1": {} as unknown as Style,
-    "3-1": {} as unknown as Style
+    "2-1-1": {} as unknown as Style,
+    "2-2-1": {} as unknown as Style,
+    "2-3-1": {} as unknown as Style,
+    "3-1": {} as unknown as Style,
+    "3-1-1": {} as unknown as Style,
+    "3-2-1": {} as unknown as Style,
+    "3-3-1": {} as unknown as Style
   }
 };
 
@@ -66,7 +138,26 @@ beforeEach(() => {
   figmaIdMock.mockReturnValue("figma-id");
   figmaApiBuilderMock.mockReturnValue(figmaApiMock);
   figmaApiMock.getFile.mockResolvedValue(getFileResult);
-  figmaApiMock.getFileNodes.mockImplementation(async (figmaId, nodeId): Promise<GetFileNodesResult> => {
+  figmaApiMock.getFileNodes.mockImplementation(async (figmaId, nodeId, {depth}): Promise<GetFileNodesResult> => {
+    if (depth === 1) {
+      return <GetFileNodesResult>{
+        nodes: {
+          "1": {
+            document: {
+              children: [
+                {id: `${nodeId}-1`} as NodeWithChildren,
+                {id: `${nodeId}-2`} as NodeWithChildren,
+                {id: `${nodeId}-3`} as NodeWithChildren
+              ]
+            },
+            styles: {
+              [`${nodeId}-1`]: {} as unknown as Style
+            }
+          }
+        } as unknown as GetFileNodesResult["nodes"]
+      } as GetFileNodesResult;
+    }
+
     return <GetFileNodesResult>{
       nodes: {
         "1": {
