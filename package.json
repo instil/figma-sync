@@ -54,7 +54,7 @@
   "devDependencies": {
     "@instil/figma-sync": "5.1.1",
     "@types/jest": "29.5.7",
-    "@types/lodash": "4.14.200",
+    "@types/lodash": "4.14.202",
     "@types/node": "20.8.10",
     "@types/require-from-string": "1.2.2",
     "@typescript-eslint/eslint-plugin": "6.9.1",
