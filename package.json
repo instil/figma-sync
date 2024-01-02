@@ -58,7 +58,7 @@
     "@types/node": "20.8.10",
     "@types/require-from-string": "1.2.2",
     "@typescript-eslint/eslint-plugin": "6.9.1",
-    "@typescript-eslint/parser": "6.9.1",
+    "@typescript-eslint/parser": "6.17.0",
     "eslint": "8.52.0",
     "eslint-plugin-import": "2.29.0",
     "eslint-plugin-jest": "27.6.0",
