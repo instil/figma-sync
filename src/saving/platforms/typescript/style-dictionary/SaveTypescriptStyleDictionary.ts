@@ -12,7 +12,7 @@ export function saveTypescriptStyleDictionary(tokens: DesignToken): void {
 const buildStyleDictionaryConfig = (): Config => ({
   source: [styleDictionaryInputFile],
   platforms: {
-    ios: {
+    typescript: {
       transformGroup: "js",
       buildPath: join(outputFolder(), "typescript", separator),
       options: {

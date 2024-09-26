@@ -95,55 +95,25 @@ describe("when tokens are complied without an existing token directory", () => {
 
 const expectedConfig: Config = {
   source: ["style-dictionary-source/**/*.json"],
-  transform: {
-    colorNameTransform: {
-      matcher: expect.anything(),
-      transformer: expect.anything(),
-      type: "name"
-    },
-    colorValueTransform: {
-      matcher: expect.anything(),
-      transformer: expect.anything(),
-      transitive: true,
-      type: "value"
-    },
-    fontTransform: {
-      matcher: expect.anything(),
-      transformer: expect.anything(),
-      type: "name"
-    },
-    fontValueTransform: {
-      matcher: expect.anything(),
-      transformer: expect.anything(),
-      transitive: true,
-      type: "value"
-    }
-  },
   platforms: {
-    ios: {
-      transformGroup: "ios",
-      transforms: [
-        "colorNameTransform",
-        "colorValueTransform",
-        "fontTransform",
-        "fontValueTransform"
-      ],
-      buildPath: "test-directory/ios/",
+    typescript: {
+      transformGroup: "js",
+      buildPath: "test-directory/typescript/",
       options: {
         showFileHeader: false,
         outputReferences: false
       },
       files: [
         {
-          destination: "_colors.swift",
-          format: "ios-swift/class.swift",
+          destination: "_colors.ts",
+          format: "javascript/module",
           filter: {
             type: "color"
           }
         },
         {
-          destination: "_typography.swift",
-          format: "ios-swift/class.swift",
+          destination: "_typography.ts",
+          format: "javascript/module",
           filter: {
             type: "typography"
           }

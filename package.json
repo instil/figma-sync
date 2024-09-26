@@ -1,6 +1,6 @@
 {
   "name": "@instil/figma-sync",
-  "version": "5.1.2",
+  "version": "5.2.0",
   "description": "Syncing a figma design system into code via a 'pull' model",
   "homepage": "https://github.com/instil/design-sync",
   "author": "neil.armstrong@instil.co",
