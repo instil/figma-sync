@@ -1,4 +1,4 @@
-import * as target from "./SaveSassHelpers";
+import * as target from "./SaveScssHelpers";
 import {existsSync, readFileSync, writeFileSync} from "fs";
 import {outputFolder} from "@src/config/providers/Config";
 
@@ -23,7 +23,7 @@ describe("when executing via ts-node", () => {
   });
 
   it("should save helper files when exists locally", () => {
-    target.saveSassHelpers();
+    target.saveScssHelpers();
 
     expect(writeFileSyncMock).toHaveBeenCalledWith("generated/scss/TypographyHelpers.scss", "A file");
     expect(writeFileSyncMock).toHaveBeenCalledWith("generated/scss/ColorHelpers.scss", "A file");
@@ -33,7 +33,7 @@ describe("when executing via ts-node", () => {
   it("should throw error if helpers folder does not exist", () => {
     existsSyncMock.mockReturnValue(false);
 
-    expect(() => target.saveSassHelpers()).toThrow("Could not find sass helpers folder");
+    expect(() => target.saveScssHelpers()).toThrow("Could not find helpers folder 'scss-helpers'");
 
     expect(readFileSyncMock).not.toHaveBeenCalled();
     expect(writeFileSyncMock).not.toHaveBeenCalled();
@@ -48,7 +48,7 @@ describe("when executing via build folder", () => {
   });
 
   it("should save helper files when exists locally", () => {
-    target.saveSassHelpers();
+    target.saveScssHelpers();
 
     expect(writeFileSyncMock).toHaveBeenCalledWith("generated/scss/TypographyHelpers.scss", "A file");
     expect(writeFileSyncMock).toHaveBeenCalledWith("generated/scss/ColorHelpers.scss", "A file");
@@ -58,7 +58,7 @@ describe("when executing via build folder", () => {
   it("should throw error if helpers folder does not exist", () => {
     existsSyncMock.mockReset().mockReturnValue(false);
 
-    expect(() => target.saveSassHelpers()).toThrow("Could not find sass helpers folder");
+    expect(() => target.saveScssHelpers()).toThrow("Could not find helpers folder 'scss-helpers'");
 
     expect(readFileSyncMock).not.toHaveBeenCalled();
     expect(writeFileSyncMock).not.toHaveBeenCalled();

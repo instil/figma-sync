@@ -38,6 +38,7 @@
   "exclude": [
     "src/**/*.test.ts",
     "src/**/*.debug.ts",
+    "./generated",
     "build",
     "jest.config.js",
     "./FigmaSync.config.ts"

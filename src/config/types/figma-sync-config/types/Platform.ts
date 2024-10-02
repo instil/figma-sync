@@ -1,4 +1,5 @@
 export type Platform =
-  | "web"
-  | "typescript"
-  | "ios";
+  | "scss"
+  | "tailwind"
+  | "ios"
+  | "android";

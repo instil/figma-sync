@@ -1,4 +1,4 @@
-import * as target from "./SaveWebStyleDictionary";
+import * as target from "./SaveScssStyleDictionary";
 import {existsSync, mkdirSync, rmSync, writeFileSync} from "fs";
 import type {Config} from "style-dictionary";
 import {colorsConfig, outputFolder} from "@src/config/providers/Config";
@@ -36,7 +36,7 @@ describe("when tokens are complied with an existing token directory", () => {
   beforeEach(() => {
     existsSyncMock.mockReturnValue(true);
 
-    target.saveWebStyleDictionary(tokens);
+    target.saveScssStyleDictionary(tokens);
   });
 
   it("should write json file to temporary directory", () => {
@@ -67,7 +67,7 @@ describe("when tokens are complied without an existing token directory", () => {
   beforeEach(() => {
     existsSyncMock.mockReturnValue(false);
 
-    target.saveWebStyleDictionary(tokens);
+    target.saveScssStyleDictionary(tokens);
   });
 
   it("should write json file to temporary directory", () => {
@@ -100,7 +100,7 @@ describe("when include css variables configuration option exists", () => {
       includeCssVariables: true
     });
 
-    target.saveWebStyleDictionary(tokens);
+    target.saveScssStyleDictionary(tokens);
   });
 
   it("should configure style dictionary with css variables file", () => {

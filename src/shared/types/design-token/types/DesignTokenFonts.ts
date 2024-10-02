@@ -5,7 +5,7 @@ export interface DesignTokenFonts {
   [key: string]: DesignTokenFont;
 }
 
-interface DesignTokenFont {
+export interface DesignTokenFont {
   family: DesignTokenFontFamily;
   size: DesignTokenFontSize;
   weight: DesignTokenFontWeight;

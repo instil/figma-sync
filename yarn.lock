@@ -591,9 +591,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instil/figma-sync@npm:5.1.1":
-  version: 5.1.1
-  resolution: "@instil/figma-sync@npm:5.1.1"
+"@instil/figma-sync@npm:5.2.0":
+  version: 5.2.0
+  resolution: "@instil/figma-sync@npm:5.2.0"
   dependencies:
     axios: 1.6.0
     figma-api: 1.11.0
@@ -604,7 +604,7 @@ __metadata:
   bin:
     figma-sync: ./build/cjs/src/SyncFigmaWithoutIcons.js
     "figma-sync:withIcons": ./build/cjs/src/SyncFigmaWithIcons.js
-  checksum: 84a8317d736d9640f3709287f8650f7510275d3ab921b1c44a2d1bf6fe1c97c7cacf2c854e2f8fe76ed768b93e875f0e3e1e4bcbd2c220eb325e3cb7699ef398
+  checksum: cf0fb3333eb39ddc453d04aa311a752ef75dc829015e4862d175a96b139e2751ebb3d2d5dd1f8a2f5ae0657d81b752eac268e6c665269ad96917740c8b04afdf
   languageName: node
   linkType: hard
 
@@ -612,7 +612,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@instil/figma-sync@workspace:."
   dependencies:
-    "@instil/figma-sync": 5.1.1
+    "@instil/figma-sync": 5.2.0
     "@types/jest": 29.5.7
     "@types/lodash": 4.14.200
     "@types/node": 20.8.10
@@ -629,6 +629,7 @@ __metadata:
     lodash: 4.17.21
     npm-pack-all: 1.12.7
     require-from-string: 2.0.2
+    sd-tailwindcss-transformer: 1.4.6
     style-dictionary: 3.9.0
     ts-jest: 29.1.1
     ts-node: 10.9.1
@@ -5315,6 +5316,15 @@ __metadata:
   version: 2.1.2
   resolution: "safer-buffer@npm:2.1.2"
   checksum: cab8f25ae6f1434abee8d80023d7e72b598cf1327164ddab31003c51215526801e40b66c5e65d658a0af1e9d6478cadcb4c745f4bd6751f97d8644786c0978b0
+  languageName: node
+  linkType: hard
+
+"sd-tailwindcss-transformer@npm:1.4.6":
+  version: 1.4.6
+  resolution: "sd-tailwindcss-transformer@npm:1.4.6"
+  peerDependencies:
+    style-dictionary: ">=3.7.0"
+  checksum: 77c661f8250dfc4c13b2ebd11b1728c808d846cdc72278ea882655072a223c42d447491b99acd2b78a50f384ec4d88c3e5bf06c353268c4e6eecd2712436f40c
   languageName: node
   linkType: hard
 
