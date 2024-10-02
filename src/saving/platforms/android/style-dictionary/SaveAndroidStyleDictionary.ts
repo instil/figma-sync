@@ -1,7 +1,7 @@
 import {join, sep as separator} from "path";
 import type {DesignToken} from "@src/shared/types/design-token/DesignToken";
 import {outputFolder} from "@src/config/providers/Config";
-import {writeFileSync} from "fs";
+import {writeFileSync, mkdirSync} from "fs";
 import {tokensToEntries} from "@src/saving/platforms/shared/utils/TokensToEntries";
 
 export function saveAndroidStyleDictionary(tokens: DesignToken): void {
@@ -30,6 +30,9 @@ export function saveAndroidStyleDictionary(tokens: DesignToken): void {
       `;
     });
 
+  mkdirSync(outputDirectory, {
+    recursive: true
+  });
   writeFileSync(join(outputDirectory, "FigmaTokens.kt"), `
     package co.instil.figmasync;
     
@@ -44,6 +47,7 @@ export function saveAndroidStyleDictionary(tokens: DesignToken): void {
     
     ${typography.join("")}
   `);
+  console.log(`Style dictionary files written to '${outputDirectory}'`);
 }
 
 function toKotlinWeight(weight: number): string {

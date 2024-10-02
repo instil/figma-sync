@@ -591,20 +591,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@instil/figma-sync@npm:5.2.0":
-  version: 5.2.0
-  resolution: "@instil/figma-sync@npm:5.2.0"
+"@instil/figma-sync@npm:6.0.0":
+  version: 6.0.0
+  resolution: "@instil/figma-sync@npm:6.0.0"
   dependencies:
     axios: 1.6.0
     figma-api: 1.11.0
     lodash: 4.17.21
     require-from-string: 2.0.2
+    sd-tailwindcss-transformer: 1.4.6
     style-dictionary: 3.9.0
     typescript: 5.2.2
   bin:
     figma-sync: ./build/cjs/src/SyncFigmaWithoutIcons.js
     "figma-sync:withIcons": ./build/cjs/src/SyncFigmaWithIcons.js
-  checksum: cf0fb3333eb39ddc453d04aa311a752ef75dc829015e4862d175a96b139e2751ebb3d2d5dd1f8a2f5ae0657d81b752eac268e6c665269ad96917740c8b04afdf
+  checksum: e5b4d7494acf56bf81b70225614103dc1b475eca368c0f58c2b42ee160136e2993ffdbc48585bee008422c38acf2083a1b732f9d21770f5ac29b76d2e65f5b0e
   languageName: node
   linkType: hard
 
@@ -612,7 +613,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@instil/figma-sync@workspace:."
   dependencies:
-    "@instil/figma-sync": 5.2.0
+    "@instil/figma-sync": 6.0.0
     "@types/jest": 29.5.7
     "@types/lodash": 4.14.200
     "@types/node": 20.8.10

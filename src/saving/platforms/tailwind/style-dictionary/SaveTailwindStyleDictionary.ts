@@ -1,5 +1,5 @@
 import {join, sep as separator} from "path";
-import {writeFileSync} from "fs";
+import {mkdirSync, writeFileSync} from "fs";
 import type {DesignToken} from "@src/shared/types/design-token/DesignToken";
 import {outputFolder} from "@src/config/providers/Config";
 import {toTailwindCss} from "@src/saving/platforms/tailwind/style-dictionary/custom-transform/ToTailwindCss";
@@ -8,6 +8,9 @@ import {toTailwindColourConfig} from "@src/saving/platforms/tailwind/style-dicti
 export function saveTailwindStyleDictionary(tokens: DesignToken): void {
   const buildPath = join(outputFolder(), "tailwind", separator);
 
+  mkdirSync(buildPath, {
+    recursive: true
+  });
   generateTailwindColourConfig(buildPath, tokens);
   generateTypographyCss(buildPath, tokens);
 }

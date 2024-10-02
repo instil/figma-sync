@@ -1,5 +1,5 @@
 import * as target from "./SaveTailwindStyleDictionary";
-import {writeFileSync} from "fs";
+import {mkdirSync, writeFileSync} from "fs";
 import {outputFolder} from "@src/config/providers/Config";
 import {removeWhitespace} from "@src/shared/stdlib/Strings";
 
@@ -7,6 +7,7 @@ jest.mock("@src/config/providers/Config");
 jest.mock("fs");
 
 const outputFolderMock = jest.mocked(outputFolder);
+const mkdirSyncMock = jest.mocked(mkdirSync);
 const writeFileSyncMock = jest.mocked(writeFileSync);
 
 beforeEach(() => {
@@ -51,6 +52,7 @@ it("should generate color and typography files", () => {
     }
   });
 
+  expect(mkdirSyncMock).toHaveBeenCalledWith("generated/tailwind/", {recursive: true});
   const [colourFilePath, colourFile] = writeFileSyncMock.mock.calls[0];
   const [typographyFilePath, typographyFile] = writeFileSyncMock.mock.calls[1];
   if (typeof colourFile !== "string") throw new Error("Expected colour file to be a string");
