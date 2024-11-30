@@ -617,7 +617,7 @@ __metadata:
     "@types/jest": 29.5.7
     "@types/lodash": 4.14.200
     "@types/node": 20.8.10
-    "@types/require-from-string": 1.2.2
+    "@types/require-from-string": 1.2.3
     "@typescript-eslint/eslint-plugin": 6.9.1
     "@typescript-eslint/parser": 6.9.1
     axios: 1.6.0
@@ -1241,10 +1241,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/require-from-string@npm:1.2.2":
-  version: 1.2.2
-  resolution: "@types/require-from-string@npm:1.2.2"
-  checksum: e366ed91eec2a39487b6cc5463e6ccc36029a6ec584a6bedbad9c41c991d8490f3677016f094f189280c83eb57795d84b744f3dcb581f9758e51c9b25ecb0ccd
+"@types/require-from-string@npm:1.2.3":
+  version: 1.2.3
+  resolution: "@types/require-from-string@npm:1.2.3"
+  checksum: 7ad120054b1a4d92b1cdbfcc0bbd7fb99cd06dc5bc17d38ab0050c5af8d8ed2ff66ecd6a67ddd840d9c1ef97f9635ff85baa3ffc22cf59d543530a847a61c459
   languageName: node
   linkType: hard
 
