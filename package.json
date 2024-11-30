@@ -50,7 +50,7 @@
     "require-from-string": "2.0.2",
     "sd-tailwindcss-transformer": "1.4.6",
     "style-dictionary": "3.9.0",
-    "typescript": "5.2.2"
+    "typescript": "5.3.3"
   },
   "devDependencies": {
     "@instil/figma-sync": "6.0.0",
