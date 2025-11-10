@@ -44,7 +44,7 @@
     "deployed-package:sync:icons": "yarn figma-sync:withIcons"
   },
   "dependencies": {
-    "axios": "1.6.0",
+    "axios": "1.13.2",
     "figma-api": "1.11.0",
     "lodash": "4.17.21",
     "require-from-string": "2.0.2",
@@ -73,9 +73,19 @@
     "typescript-transform-paths": "3.4.6"
   },
   "resolutions": {
+    "@babel/helpers": "7.26.10",
     "@babel/traverse": "7.23.2",
+    "axios": "1.13.2",
+    "brace-expansion": "2.0.2",
+    "braces": "3.0.3",
+    "cross-spawn": "7.0.5",
+    "follow-redirects": "1.15.9",
     "http-cache-semantics": "4.1.1",
+    "ip": "2.0.1",
     "json5": "2.2.3",
-    "semver": "7.5.4"
+    "micromatch": "4.0.8",
+    "semver": "7.5.4",
+    "socks": "2.8.7",
+    "tar": "6.2.1"
   }
 }
