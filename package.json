@@ -44,38 +44,38 @@
     "deployed-package:sync:icons": "yarn figma-sync:withIcons"
   },
   "dependencies": {
-    "axios": "1.6.0",
+    "axios": "1.13.2",
     "figma-api": "1.11.0",
     "lodash": "4.17.21",
     "require-from-string": "2.0.2",
     "sd-tailwindcss-transformer": "1.4.6",
-    "style-dictionary": "3.9.0",
+    "style-dictionary": "3.9.2",
     "typescript": "5.2.2"
   },
   "devDependencies": {
     "@instil/figma-sync": "6.0.0",
-    "@types/jest": "29.5.7",
+    "@types/jest": "30.0.0",
     "@types/lodash": "4.14.200",
     "@types/node": "20.8.10",
     "@types/require-from-string": "1.2.2",
-    "@typescript-eslint/eslint-plugin": "6.9.1",
-    "@typescript-eslint/parser": "6.9.1",
-    "eslint": "8.52.0",
-    "eslint-plugin-import": "2.29.0",
-    "eslint-plugin-jest": "27.6.0",
+    "@typescript-eslint/eslint-plugin": "8.46.4",
+    "@typescript-eslint/parser": "8.46.4",
+    "eslint": "8.57.1",
+    "eslint-plugin-import": "2.32.0",
+    "eslint-plugin-jest": "28.10.0",
     "eslint-plugin-no-relative-import-paths": "1.5.3",
-    "jest": "29.7.0",
+    "jest": "30.2.0",
     "npm-pack-all": "1.12.7",
-    "ts-jest": "29.1.1",
+    "ts-jest": "29.4.5",
     "ts-node": "10.9.1",
-    "ts-patch": "3.0.2",
+    "ts-patch": "3.3.0",
     "tsconfig-paths": "4.2.0",
     "typescript-transform-paths": "3.4.6"
   },
   "resolutions": {
-    "@babel/traverse": "7.23.2",
-    "http-cache-semantics": "4.1.1",
-    "json5": "2.2.3",
-    "semver": "7.5.4"
+    "axios": "1.13.2"
+  },
+  "resolutionsComments": {
+    "axios": "figma-api@1.11.0 depends on vulnerable axios@^0.21.1; resolution ensures all dependencies use secure version"
   }
 }
