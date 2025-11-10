@@ -74,5 +74,8 @@
   },
   "resolutions": {
     "axios": "1.13.2"
+  },
+  "resolutionsComments": {
+    "axios": "figma-api@1.11.0 depends on vulnerable axios@^0.21.1; resolution ensures all dependencies use secure version"
   }
 }
